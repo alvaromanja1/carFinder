@@ -20,6 +20,12 @@ body {
     align-content: center; 
     vertical-align: middle; 
 }
+table#t01 {
+    width: 100%;    
+    background-color: #f1f1c1;
+    color: black;
+    
+}
 #nick{
     border-radius: 15px; 
 }

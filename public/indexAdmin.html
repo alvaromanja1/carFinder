@@ -8,7 +8,8 @@
 		<link rel="stylesheet" type="text/css" href="main.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="http://j.maxmind.com/app/geoip.js"></script> <!-- For our fallback -->
-        <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCWwmhdQvtdxaGSZEGC1fSHuJXsIo_FKvI"></script>
+        <!--<script src="http://maps.google.com/maps/api/js?sensor=false"></script>-->
         <script src="script.js"></script>
 	<title>INTRODUCE YOUR VEHICLE AND YOUR INFO</title>
     <link rel="icon" href="images/logo.jpg"/>
@@ -126,14 +127,11 @@
       <input type="number" name="phone" class="form-control"  placeholder="Phone" />
     </div>
     <div class="form-group">
-      <label id="phone"><b>Write your location:</b></label><br>
-      <input type="text" name="location" class="form-control"  placeholder="Location" />
-    </div>
-    <!--<div class="form-group">
     <label id="phone"><b>Your location:</b></label><br>
     <input type="text" id="localization" name="localization" class="form-control"/>
     <input type="button" class="button" id="go" value="Get your location">
-    </div>-->
+    </div>
+      
       <br>
     </div>
     

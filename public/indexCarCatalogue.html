@@ -3,38 +3,72 @@
 <head>
 
 	<meta charset="utf-8">
-		<link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
-		<link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css">
-		<link rel="stylesheet" type="text/css" href="main.css">
+		<!--<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap-responsive.css">-->
+		<link rel="stylesheet" type="text/css" href="bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="bootstrap-responsive.css">
+        <link rel="stylesheet" type="text/css" href="main.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script>
             $(document).ready(function () {
+             $('#t01').hide();     
+              $('#clickme').click(function () {
                 $.ajax({
                      type: "GET",
                      url: 'http://localhost:2000/getCarInfo',
-                     data: data,
-                     dataType: 'json'
+                     data: 'data',
+                     dataType: 'json',
+                    contentType: "application/json; charset=UTF-8"
                     })
 
                     .done(function(data){
-                      console.log("GET Succeeded");
-                      $('#carInfo').html(JSON.stringify); //What should I put after JSON.stringify?
+                    $('#t01').show(); 
+                    var json = JSON.stringify(data); 
+                    for(var i in data) {
+                        var plate= data[i].plate;
+                        var brand= data[i].brand; 
+                        var model= data[i].model; 
+                        var year= data[i].year; 
+                        var jsonPlate= JSON.stringify(plate); 
+                        var jsonBrand= JSON.stringify(brand); 
+                        var jsonModel= JSON.stringify(model); 
+                        var jsonYear= JSON.stringify(year); 
+                      console.log("ajax callback response:" + jsonBrand);
+                        $('#rowPlate').html('<div>'+jsonPlate+'</div>');
+                        $('#rowBrand').html('<div>'+jsonBrand+'</div>');
+                        $('#rowModel').html('<div>'+jsonModel+'</div>');
+                        $('#rowYear').html('<div>'+jsonYear+'</div>');
+                    }
                     })
                     .fail(function(data){
                         console.log("err"); 
                     }); 
                 }); 
-            }); 
+            });  
     </script>
 	<title>AVAILABLE VEHICLES</title>
     <link rel="icon" href="images/logo.jpg"/>
 </head>
 <body>    
-    <input  class="btn btn-primary" type="submit" id="clickme" value="Get JSON"/> 
+    <input  class="btn btn-primary" type="submit" id="clickme" value="OUR CATALOGUE"/> 
     <div id="carInfo">
-    
+        <table id="t01" border="1">
+              <tr>
+                <th>PLATE</th>
+                <th>BRAND</th> 
+                <th>MODEL</th>
+                <th>YEAR</th>
+              </tr>
+              <tr>
+                <td id="rowPlate"></td>
+                <td id="rowBrand"></td>
+                <td id="rowModel"></td>
+                <td id="rowYear"></td>
+              </tr>
+        </table>
     
     </div>
+    <input  class="btn btn-primary" type="submit" name="galery" value="Return" onclick = "location='index.html'"/>
 </body>
 
 </html>

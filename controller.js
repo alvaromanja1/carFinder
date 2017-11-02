@@ -1,8 +1,3 @@
-/**
-* @author Supal Dubey, modified, extended and adapted to RomanArabConverter by @dipina
-* http://roadtobe.com/supaldubey/
-**/
-
 function dispatch(handler, req, res) {
 	var content = "";
 	if (typeof handler === 'function') {
