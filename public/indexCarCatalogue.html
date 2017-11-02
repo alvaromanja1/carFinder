@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css">
+		<link rel="stylesheet" type="text/css" href="main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $.ajax({
+                     type: "GET",
+                     url: 'http://localhost:2000/getCarInfo',
+                     data: data,
+                     dataType: 'json'
+                    })
+
+                    .done(function(data){
+                      console.log("GET Succeeded");
+                      $('#carInfo').html(JSON.stringify); //What should I put after JSON.stringify?
+                    })
+                    .fail(function(data){
+                        console.log("err"); 
+                    }); 
+                }); 
+            }); 
+    </script>
+	<title>AVAILABLE VEHICLES</title>
+    <link rel="icon" href="images/logo.jpg"/>
+</head>
+<body>    
+    <input  class="btn btn-primary" type="submit" id="clickme" value="Get JSON"/> 
+    <div id="carInfo">
+    
+    
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+        <!-- <link rel="stylesheet" type="text/css" href="mainLogIn.css"> -->
+        <link rel="stylesheet" type="text/css" href="main.css">
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css">
+	    <title>FIND YOUR VEHICLE</title>
+        <link rel="icon" href="images/logo.jpg"/>
+        <script type="text/javascript" src="../js/verification.js"></script> 
+        <script type="text/javascript" src="../main.js"></script>
+        <script>
+         
+            function isValidEmail(nick) {
+
+            var email = document.getElementById("nick").value; 
+            var patron=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+
+               if(email.search(patron)==0)
+               {
+                document.getElementById("errorEmail").innerHTML = "Correct email";
+                return;
+               }
+               document.getElementById("errorEmail").innerHTML = "Email's format is incorrect";
+            }
+
+            function validate(){
+
+              var realname = document.getElementById("realname").value; 
+              var nick = document.getElementById("nick").value; 
+              var pass = document.getElementById("passwo").value; 
+              var telephone = document.getElementById("telephone").value; 
+              var patron=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+
+              if(realname == "" |nick== "" | pass == "" | telephone == ""){
+                  alert("You must fill all the fields"); 
+              }
+              else if(realname.length > 30){
+                  alert("Your name is too long"); 
+              }
+            }    
+        </script>
+</head>
+<body>
+	<center><div class="tit"><h2>LOG IN</h2>
+		<center><div class="Ingreso">
+
+	<table id="logg">
+		<tr>
+		<td rowspan=2>
+		<form action="/login" method="post">
+
+		<table>
+
+		<tr><td><label id="mail"><b>Email: </b></label></td>
+			<td width=80><input class="form-group has-success" placeholder="Write your email" type="text" id="email" name="email"></td></tr>
+		<tr><td><label id="pass"><b>Password: </b></label></td>
+			<td witdh=80><input type="password" placeholder="Write your password" id="passw" name="passw"></td></tr>
+        <tr><td><label id="lab"><b></b></label></td>
+            <td><a href="indexUserUpdate.html">Have you forgotten your password? </a></label></td></tr>
+		<tr><td></td>
+			<td width=80 align=center><input class="btn btn-primary" id="log" type="submit" name="submit" value="Log In"></td>
+			</tr></tr></table>
+		</form>
+<br>
+<!-- formulario registro -->
+
+<form method="post" action="/insertUser" onSubmit="return validate(realname, nick, telephone, passwo);" class="form-resgister">
+  <fieldset>
+    <legend id="sigin" style="font-size: 18pt"><b>SIGN IN</b></legend>
+    <div class="form-group">
+      <label id="writeName"><b>Write your name:</b></label><br>
+      <input type="text" name="realname" id="realname" class="form-control" placeholder="Write your name" />
+    </div>
+    <div class="form-group">
+      <label id="writeEmail"><b>Write your email:</b></label><br>
+      <input type="email" name="nick" id="nick" class="form-control" placeholder="Write your email" onkeyUp="return isValidEmail(nick);" />
+    </div>
+    <div class="errorEmail" id="errorEmail" name="errorEmail"></div>
+    <div class="form-group">
+      <label id="writePhone"><b>Write your telephone:</b></label><br>
+      <input type="number" name="telephone" id="telephone" class="form-control" placeholder="Write your telephone" />    
+    </div>
+    <div class="form-group">
+      <label id="writePass"><b>Write your password:</b></label><br>
+      <input type="password" name="passwo" id="passwo" class="form-control"  placeholder="Write your password" />
+    </div>
+    <div class="errorDiv" id="errorDiv" name="errorDiv"></div>
+      <div class="errorDiv" id="errorDiv" name="nameDiv"></div>
+    </div>
+   <br>
+    <div id="botones">
+    <input  class="btn btn-primary" id="sigButton" type="submit" name="submit" id="signIn" value="Sign in" onclick="validate(realname, nick, telephone, passwo)"/>
+    <input  class="btn btn-primary" type="reset" name="deleteAll" value="Reset"/>
+    <input  class="btn btn-primary" type="button" name="galery" value="Vehicles catalogue" onclick = "location='indexCarCatalogue.html'"/>
+    <input  class="btn btn-primary"  type="button" name="delete" value="Delete user" onclick = "location='indexUserDelete.html'"/>
+    </div>
+  </fieldset>
+</form>
+</div>
+    
+<!--Fin formulario registro -->
+
+		</td>
+		</tr>
+		</table>
+		</div></center>
+
+	
+</body>
+<footer>
+  <p><a href="indexFooter.html">More information</a></p>
+</footer>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css">
+		<link rel="stylesheet" type="text/css" href="main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="http://j.maxmind.com/app/geoip.js"></script> <!-- For our fallback -->
+        <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <script src="script.js"></script>
+	<title>INTRODUCE YOUR VEHICLE AND YOUR INFO</title>
+    <link rel="icon" href="images/logo.jpg"/>
+    <script> 
+        //$(document).ready(function(){
+          //  $("img").click(function(){
+            //    $("div").animate({left: '250px'});
+            //});
+        //});
+        
+    $(document).ready(function () {
+      // wire up button click
+      $('#go').click(function () {
+        // test for presence of geolocation
+        if(navigator && navigator.geolocation) {
+          // make the request for the user's position
+          navigator.geolocation.getCurrentPosition(geo_success, geo_error);
+        } else {
+          // use MaxMind IP to location API fallback
+          printAddress(geoip_latitude(), geoip_longitude(), true);
+        }
+      });
+    });
+
+
+    function geo_success(position) {
+      printAddress(position.coords.latitude, position.coords.longitude);
+    }
+
+    function geo_error(err) {
+      // instead of displaying an error, fall back to MaxMind IP to location library
+      printAddress(geoip_latitude(), geoip_longitude(), true);
+    }
+
+    // use Google Maps API to reverse geocode our location
+    function printAddress(latitude, longitude, isMaxMind) {
+        // set up the Geocoder object
+        var geocoder = new google.maps.Geocoder();
+
+        // turn coordinates into an object
+        var yourLocation = new google.maps.LatLng(latitude, longitude);
+
+        // find out info about our location
+        geocoder.geocode({ 'latLng': yourLocation }, function (results, status) {
+        if(status == google.maps.GeocoderStatus.OK) {
+          if(results[7]) {
+                          
+            document.getElementById("localization").value = results[7].formatted_address;
+            //$('#results').fadeOut(function() {
+              //$(this).html('<p><b>Abracadabra!</b> My guess is:</p><p><em>' + results[7].formatted_address + '</em></p>').fadeIn();
+            //})
+          } else {
+            error('Google did not return any results.');
+          }
+        } else {
+          error("Reverse Geocoding failed due to: " + status);
+        }
+      });
+    }
+    function error(msg) {
+      alert(msg);
+    }
+</script> 
+</head>
+<body>
+	<center><div class="tit"><h2>INTRODUCE YOUR VEHICLE INFORMATION</h2>
+		<center><div class="Ingreso">
+	<table border="0" align="center" valign="middle">
+		<tr>
+		<td rowspan=2>
+            
+<!-- formulario registro -->
+
+<form method="post" action="/insertCar" class="form-resgister">
+  <fieldset>
+    <div class="form-group">
+      <label id="Writeplate"><b>Write the car's number plate:</b></label><br>
+      <input type="text" name="plate" id="plate" class="form-control2" placeholder="Number plate" />
+    </div>
+    <div class="form-group">
+      <label id="brand" style="font-size: 14pt"><b>Write the car's brand:</b></label><br>
+      <input id="inputBrand" type="text" name="brand" class="form-control2" placeholder="Car brand" />
+    </div>
+    <div class="form-group">
+      <label id="model" style="font-size: 14pt;"><b>Write the car's model:</b></label><br>
+      <input id="inputModel" type="text" name="model" class="form-control2"   placeholder="Car model"/>
+    </div>
+    <div class="form-group">
+      <label id="colour" style="font-size: 14pt;"><b>Write the car's colour:</b></label><br>
+      <input id="inputColour" type="text" name="colour" class="form-control2"  placeholder="Colour" />
+    </div>
+    <div class="form-group">
+      <label id="km" style="font-size: 14pt"><b>Write the car's km:</b></label><br>
+      <input id="inputKm" type="number" name="km" class="form-control2"  placeholder="Km" />
+    </div>
+    <div class="form-group">
+      <label id="price" style="font-size: 14pt"><b>Write the price:</b></label><br>
+      <input id="inputPrice" type="text" name="price" class="form-control2"  placeholder="Price" />
+    </div>
+    <div class="form-group">
+      <label id="year" style="font-size: 14pt"><b>Write the year of your car:</b></label><br>
+      <input id="inputYear" type="number" name="year" class="form-control2"  placeholder="Year" />
+    </div>
+    <div class="form-group">
+      <label id="horsepower" style="font-size: 14pt"><b>Write the car's horsepower:</b></label><br>
+      <input id="inputPower" type="number" name="horsepower" class="form-control2"  placeholder="HorsePower" />
+    </div>
+      <h2 style="color: #0000FF; ">SELLER INFORMATION</h2>
+      <div class="form-group">
+      <label id="name"><b>Write your name:</b></label><br>
+      <input type="text" name="name" class="form-control"  placeholder="Name" />
+    </div>
+    <div class="form-group">
+      <label id="phone"><b>Write your telephone:</b></label><br>
+      <input type="number" name="phone" class="form-control"  placeholder="Phone" />
+    </div>
+    <div class="form-group">
+      <label id="phone"><b>Write your location:</b></label><br>
+      <input type="text" name="location" class="form-control"  placeholder="Location" />
+    </div>
+    <!--<div class="form-group">
+    <label id="phone"><b>Your location:</b></label><br>
+    <input type="text" id="localization" name="localization" class="form-control"/>
+    <input type="button" class="button" id="go" value="Get your location">
+    </div>-->
+      <br>
+    </div>
+    
+    <!--<div id="logo">
+        
+            <img src="images/coche.png">
+        
+        </div>-->
+   
+    <input  class="btn btn-primary" type="submit" name="submit" value="Introduce"/>
+    <input class="btn btn-primary"  type="button" value="Return" name="return" onclick = "location='index.html'"/>
+  </fieldset>
+</form>
+</div>
+
+		</td>
+		</tr>
+		</table>
+		</div></center></div></center>
+
+</body>
+</html>

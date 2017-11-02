@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css">
+		<link rel="stylesheet" type="text/css" href="main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="../jquery.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $("#seller").hide();
+                $("p").click(function(){
+                    $("p").hide();
+                    $("#seller").show();
+                });
+        });
+
+        function popUp() {
+                alert("It will be added to your bag. Are you sure?"); 
+        }
+        </script>
+       
+	<title>AVAILABLE VEHICLES</title>
+</head>
+<body>
+    
+	<center><div class="tit"><h2>SELECTED CAR INFORMATION</h2>
+        <ul class="quotes">
+            <table id="carInfo2" border="1">
+                    <tr>
+                        <th>Plate</th>
+                        <th>Brand</th>
+                        <th>Model</th>
+                        <th>Colour</th>
+                        <th>Km</th>
+                        <th>Price</th>
+                        <th>Year</th>
+                        <th>Horsepower</th>
+                    </tr>
+                    <tr>
+             <% for(var i=0; i<quotes.length; i++) {%>
+                <div class="quote">
+                  <td><span><%= quotes[i].plate %></span></td>
+                  <td><span><%= quotes[i].brand %></span></td>
+                  <td><span><%= quotes[i].model %></span></td>
+                  <td><span><%= quotes[i].colour %></span></td>
+                  <td><span><%= quotes[i].km %></span></td>
+                  <td><span><%= quotes[i].price %></span></td>
+                  <td><span><%= quotes[i].year %></span></td>
+                  <td><span><%= quotes[i].horsepower %></span></td>
+                </div>
+                </tr>
+              <% } %>
+                </table>
+              </ul>
+        <p>Show seller info</p>
+        <div id="seller">
+         <ul class="quotes">
+            <table id="seller" border="1">
+                    <tr>
+                        <th>Seller Name</th>
+                        <th>Seller Phone</th>
+                    </tr>
+                    <tr>
+             <% for(var i=0; i<quotes.length; i++) {%>
+                <div class="quote">
+                  <td><span><%= quotes[i].name %></span></td>
+                  <td><span><%= quotes[i].phone %></span></td>
+                </div>
+                </tr>
+              <% } %>
+                </table>
+              </ul>
+        </div>
+          
+    <input  class="btn btn-primary" type="button" name="return" value="Return" onclick = "location='indexClient.html'"/>
+    <input  class="btn btn-primary" type="button" name="continue" value="Add to Bag " onclick = "location='indexUserInfo.html';popUp();"/>
+        </div>
+</body>
+</html>
