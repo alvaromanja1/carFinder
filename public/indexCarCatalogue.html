@@ -18,33 +18,30 @@
                      url: 'http://localhost:2000/getCarInfo',
                      data: 'data',
                      dataType: 'json',
-                    contentType: "application/json; charset=UTF-8"
+                     contentType: "application/json; charset=UTF-8"
                     })
 
                     .done(function(data){
                     $('#t01').show(); 
-                    var json = JSON.stringify(data); 
-                    for(var i in data) {
-                        var plate= data[i].plate;
-                        var brand= data[i].brand; 
-                        var model= data[i].model; 
-                        var year= data[i].year; 
-                        var jsonPlate= JSON.stringify(plate); 
-                        var jsonBrand= JSON.stringify(brand); 
-                        var jsonModel= JSON.stringify(model); 
-                        var jsonYear= JSON.stringify(year); 
-                      console.log("ajax callback response:" + jsonBrand);
-                        $('#rowPlate').html('<div>'+jsonPlate+'</div>');
-                        $('#rowBrand').html('<div>'+jsonBrand+'</div>');
-                        $('#rowModel').html('<div>'+jsonModel+'</div>');
-                        $('#rowYear').html('<div>'+jsonYear+'</div>');
-                    }
+                    //var json = JSON.stringify(data); 
+                         var trHTML = '';
+                      $.each(data, function (key,value) {
+                         trHTML += 
+                            '<tr><td>' + value.plate + 
+                            '</td><td>' + value.brand + 
+                            '</td><td>' + value.model + 
+                            '</td><td>' + value.year + 
+                            '</td></tr>';     
+                      });
+
+                        $('#t01').append(trHTML);
+                    
                     })
                     .fail(function(data){
-                        console.log("err"); 
+                        console.log("error"); 
                     }); 
-                }); 
-            });  
+              }); 
+            }); 
     </script>
 	<title>AVAILABLE VEHICLES</title>
     <link rel="icon" href="images/logo.jpg"/>
@@ -58,12 +55,6 @@
                 <th>BRAND</th> 
                 <th>MODEL</th>
                 <th>YEAR</th>
-              </tr>
-              <tr>
-                <td id="rowPlate"></td>
-                <td id="rowBrand"></td>
-                <td id="rowModel"></td>
-                <td id="rowYear"></td>
               </tr>
         </table>
     
