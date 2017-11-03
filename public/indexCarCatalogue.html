@@ -11,8 +11,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script>
             $(document).ready(function () {
-             $('#t01').hide();     
-              $('#clickme').click(function () {
+             //$('#t01').hide();     
+              //$('#clickme').click(function () {
                 $.ajax({
                      type: "GET",
                      url: 'http://localhost:2000/getCarInfo',
@@ -21,8 +21,7 @@
                      contentType: "application/json; charset=UTF-8"
                     })
 
-                    .done(function(data){
-                    $('#t01').show(); 
+                    .done(function(data){ 
                     //var json = JSON.stringify(data); 
                          var trHTML = '';
                       $.each(data, function (key,value) {
@@ -41,13 +40,13 @@
                         console.log("error"); 
                     }); 
               }); 
-            }); 
+           // }); 
     </script>
 	<title>AVAILABLE VEHICLES</title>
     <link rel="icon" href="images/logo.jpg"/>
 </head>
 <body>    
-    <input  class="btn btn-primary" type="submit" id="clickme" value="OUR CATALOGUE"/> 
+    <h2>These are our available vehicles</h2>
     <div id="carInfo">
         <table id="t01" border="1">
               <tr>
