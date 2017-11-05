@@ -50,6 +50,7 @@ function saveCar2DB(req, res) {
         horsepower: req.body.horsepower, 
         name: req.body.name, 
         phone: req.body.phone,
+        mail: req.body.mail,
         localization: req.body.localization
   };
 

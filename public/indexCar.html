@@ -1,38 +1,80 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="main.css">
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css">
-	<link rel="stylesheet" href="reset.css"> <!-- CSS reset -->
-	<link rel="stylesheet" href="style.css"> <!-- Resource style -->
-	<script src="../js/modernizr.js"></script> <!-- Modernizr -->
-    <script src="../js/jquery-2.1.1.js"></script>
-    <script src="../js/jquery.mobile.custom.min.js"></script>
-    <script src="../js/main.js"></script> <!-- Resource jQuery -->
-	<title>Welcome!</title>
+	<title>New document</title>
+	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+	<link rel="stylesheet" type="text/css" href="mainCar.css" />
+    <link type="text/css" href="css/jquery-ui-1.8.13.custom.css" rel="stylesheet" />
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript">
+	
+        $(document).ready(function() {
+    
+            $('#home').click(function(){ 
+                $.ajax({
+                    type: "POST",
+                    url: "indexAdmin.html",
+                    success: function(a) {
+                        $('#central').html(a);  
+                    }
+                });
+            });
+            
+            $('#admin').click(function(){
+				$("#central").load('indexAdmin.html'); 
+                /*$.ajax({
+                    type: "POST",
+                    url: "inc/products.php",
+					/
+                    success: function(a) {
+                        $('#central').html(a);  
+                    }
+                });*/
+            });
+            
+            $('#catalogue').click(function(){ 
+                /*$.ajax({
+                    type: "POST",
+                    url: "inc/gallery.php",
+                    success: function(a) {
+                        $('#central').html(a);  
+                    }
+                });*/
+				$("#central").load('inc/gallery.php');
+            });
+            
+            $('#contact').click(function(){ 
+                /*$.ajax({
+                    type: "POST",
+                    url: "inc/contact.php",
+                    success: function(a) {
+                        $('#central').html(a);  
+                    }
+                });*/
+				$("#central").load('inc/contact.php');
+            });
+            
+        });
+	</script>
     <link rel="icon" href="images/logo.jpg"/>
 </head>
+</head>
 <body>
-<header>
+<div id="content">
+	<div id="header">WALLAcar
     <img id ="close" src="images/log-35496_960_720.png" onclick="location='index.html'">
-	<h1>WALLAcar</h1>
-</header>
-<section class="cd-faq">
-	<ul class="cd-faq-categories">
-		<li><a class="selected" href="#basics">Welcome</a></li>
-		<li><a href="#mobile">Sell a car</a></li>
-		<li><a href="#account">Buy a car</a></li>
-        <li><a href="#payments">Contact us</a></li>
-	</ul> <!-- cd-faq-categories -->
-
-	<div class="cd-faq-items">
+    </div>
+    
+	<div id="column-left">
+    	<ul id="menu">
+        	<li><a href="#" id="home" style="cursor:pointer;">Home</a></li>
+            <li><a href="#" id="admin" style="cursor:pointer;">Sell a car</a></li>
+            <li><a href="#" id="catalogue" style="cursor:pointer;">Buy a car</a></li>
+            <li><a href="#" id="contact" style="cursor:pointer;">Contact us</a></li>
+        </ul>
+    </div>
+	<div id="central">
 		
-	</div> <!-- cd-faq-items -->
-</section> <!-- cd-faq -->
+    </div>
 </body>
 </html>
