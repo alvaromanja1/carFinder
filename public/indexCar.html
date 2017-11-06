@@ -51,7 +51,18 @@
                         $('#central').html(a);  
                     }
                 });*/
-				$("#central").load('inc/contact.php');
+				$("#central").load('indexContactUs.html');
+            });
+            
+             $('#rate').click(function(){ 
+                /*$.ajax({
+                    type: "POST",
+                    url: "inc/contact.php",
+                    success: function(a) {
+                        $('#central').html(a);  
+                    }
+                });*/
+				$("#central").load('indexRateUs.html');
             });
             
         });
@@ -71,6 +82,7 @@
             <li><a href="#" id="admin" style="cursor:pointer;">Sell a car</a></li>
             <li><a href="#" id="catalogue" style="cursor:pointer;">Buy a car</a></li>
             <li><a href="#" id="contact" style="cursor:pointer;">Contact us</a></li>
+            <li><a href="#" id="rate" style="cursor:pointer;">Rate us</a></li>
         </ul>
     </div>
 	<div id="central">

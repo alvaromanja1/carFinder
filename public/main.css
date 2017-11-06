@@ -172,7 +172,42 @@ input.form-control{
     width:100px;
     position:absolute;  
 }
+#text{
+    text-align: left;
+    padding:  0.4em;
+    padding-bottom:150px;
+    width: 200px;
+    height: 10px; 
+    margin: 0 0 0 -17px;
+    border-radius: 15px; 
+}
 
+
+#radioGroup .wrap {
+  display: inline-block;
+}
+#radioGroup label {
+  display: block;
+  text-align: center;
+  margin: 0 0.2em;
+}
+#radioGroup input[type="radio"] {
+  display: block;
+  margin: 0.5em auto;
+}
+
+#radioGroup2 .wrap {
+  display: inline-block;
+}
+#radioGroup2 label {
+  display: block;
+  text-align: center;
+  margin: 0 0.2em;
+}
+#radioGroup2 input[type="radio"] {
+  display: block;
+  margin: 0.5em auto;
+}
 h1 {
     color: white;
     font-weight: 600;
