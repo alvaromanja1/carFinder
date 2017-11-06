@@ -45,19 +45,19 @@ app.post('/update', function(req, res, next) {
 });
 
 //send email
-app.post('/send',function(req,res){
+app.post('/send', function(req, res, next){
    console.log("Email sent correctly");
    controller.dispatch(urlResponseHandlers.sendEmail, req, res);
 });
 
-
-
-
-//PENDIENTE
+//retrieve cars from db
 app.get('/getCarInfo', function(req, res) {
     //res.send('hello world'); 
     controller.dispatch(urlResponseHandlers.retrieveCars, req, res); 
 }); 
+
+
+
 
 //PENDIENTE
 app.post('/getCarCompleteInfo', function(req, res, next) {

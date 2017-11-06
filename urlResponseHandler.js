@@ -130,25 +130,26 @@ function updateUser(req, res) {
 }
 
 function sendEmail(req, res){
-      var plate = req.body.plate;
-      var name =req.body.name; 
-      var address = req.body.address; 
+      var email = req.body.email;
+      var issue = req.body.issue; 
+      var text = req.body.text; 
     
-    MongoClient.connect('mongodb://127.0.0.1:27017/carFinder2', function(err, db) {
-		if(err) throw err;
-        
-    db.collection('cars').deleteOne({"plate": plate}, function(err, result) {
-          assert.equal(null, err);
-          console.log('Car deleted');
-          db.close();
-        });
-     });
+   // MongoClient.connect('mongodb://127.0.0.1:27017/carFinder2', function(err, db) {
+	//	if(err) throw err;
+   //     
+   // db.collection('cars').deleteOne({"plate": plate}, function(err, result) {
+   //       assert.equal(null, err);
+   //       console.log('Car deleted');
+   //       db.close();
+   //     });
+   //  });
 
     //send email
     var mailOptions={
-        to : req.body.email,
-        subject : "Thanks for buying with us!!",
-        text : "Dear Client, Thanks for buying a car with us. We have received correctly your order."
+        from: email, 
+        to : "alvarocoches96@gmail.com",
+        subject : issue ,
+        text : text
     }
     console.log(mailOptions);
     smtpTransport.sendMail(mailOptions, function(error, response){
@@ -157,9 +158,26 @@ function sendEmail(req, res){
         res.end("error");
      }else{
             console.log("Message sent: " + response.message);
-            res.redirect('/');
+            res.redirect('/indexCar.html');
          }
 });
+    
+    var mailOptions={
+        to : email,
+        subject : "Message correctly sent" ,
+        text : "Dear Client, your message has been sent to the admin and you will receive an answer briefly."
+    }
+    console.log(mailOptions);
+    smtpTransport.sendMail(mailOptions, function(error, response){
+     if(error){
+            console.log(error);
+        res.end("error");
+     }else{
+            console.log("Message sent: " + response.message);
+            res.redirect('/indexCar.html');
+         }
+});
+    
 }
 
 function retrieveCars(req, res){
