@@ -24,6 +24,7 @@ table#t01 {
     width: 100%;    
     background-color: #f1f1c1;
     color: black;
+    overflow: scroll;
     
 }
 #nick{
@@ -219,7 +220,4 @@ img {
     display: block;
     margin: 1.3em auto;
     max-width: 95%;
-}
-footer{
-  background-color: black; 
 }

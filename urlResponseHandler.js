@@ -66,7 +66,7 @@ function saveCar2DB(req, res) {
 				console.log("Error produced: " + err);
 			} else {
 				console.log("Información guardada: " + err);
-                res.redirect("/"); 
+                res.redirect("/indexAdmin.html"); 
 			}
 		});
 	});
@@ -90,7 +90,7 @@ function logIn(req, res) {
             return res.status(404).send();
         }
         console.log('Logged In correctly');
-        res.redirect('/indexAdmin.html');
+        res.redirect('/indexCar.html');
         return res.status(200).send(); 
         })
     });
@@ -116,11 +116,12 @@ function updateUser(req, res) {
   };
    
   var nick = req.body.nick;
+  var oldPass = req.body.oldPass;
 
   MongoClient.connect('mongodb://127.0.0.1:27017/carFinder2', function(err, db) {
 		if(err) throw err;
       
-  db.collection('users').updateOne({"nick": nick}, {$set: item}, function (err, result){
+  db.collection('users').updateOne({"nick": nick, "pass": oldPass}, {$set: item}, function (err, result){
       assert.equal(null, err);
       console.log('Password updated');
       db.close();

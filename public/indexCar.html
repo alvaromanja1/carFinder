@@ -4,20 +4,20 @@
 	<title>New document</title>
 	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
 	<link rel="stylesheet" type="text/css" href="mainCar.css" />
-    <link type="text/css" href="css/jquery-ui-1.8.13.custom.css" rel="stylesheet" />
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript">
 	
         $(document).ready(function() {
     
             $('#home').click(function(){ 
-                $.ajax({
-                    type: "POST",
-                    url: "indexAdmin.html",
-                    success: function(a) {
-                        $('#central').html(a);  
-                    }
-                });
+                $("#central").load('indexWelcome.html'); 
+               // $.ajax({
+                //    type: "POST",
+                  //  url: "indexWelcome.html",
+                //    success: function(a) {
+                  //      $('#central').html(a);  
+                //    }
+                //});
             });
             
             $('#admin').click(function(){
@@ -40,7 +40,7 @@
                         $('#central').html(a);  
                     }
                 });*/
-				$("#central").load('inc/gallery.php');
+				$("#central").load('indexCarCatalogue.html');
             });
             
             $('#contact').click(function(){ 
@@ -74,7 +74,13 @@
         </ul>
     </div>
 	<div id="central">
-		
+		<h1>WELCOME TO WALLAcar</h1><br>
+        <h2>An app where you can sell and buy second hand cars.</h2><br>
+        <h5>Don't forget that this app has been created for the DAS subject.</h5>
     </div>
+    
+    <!--<footer>
+        <p><a href="indexFooter.html">More information</a></p>
+    </footer>-->
 </body>
 </html>
