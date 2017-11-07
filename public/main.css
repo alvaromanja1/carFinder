@@ -85,16 +85,6 @@ table#t01 {
         height: 400px;
         width: 100%;
        }
-#log{
-     font-size:10px;
-        font-family:Verdana,Helvetica;
-        font-weight:bold;
-        color:white;
-        background:#638cb5;
-        border:0px;
-        width:80px;
-        height:19px;
-}
 
 #tableCarsAvailable{
     color: white; 

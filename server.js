@@ -56,6 +56,12 @@ app.get('/getCarInfo', function(req, res) {
     controller.dispatch(urlResponseHandlers.retrieveCars, req, res); 
 }); 
 
+//send email with forgotten password
+app.post('/forget', function(req, res) {
+    //res.send('hello world'); 
+    console.log("Email sent with the user pass"); 
+    controller.dispatch(urlResponseHandlers.forgetPass, req, res); 
+}); 
 
 
 

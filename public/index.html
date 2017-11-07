@@ -3,14 +3,13 @@
 <head>
 
 	<meta charset="utf-8">
-        <!-- <link rel="stylesheet" type="text/css" href="mainLogIn.css"> -->
         <link rel="stylesheet" type="text/css" href="main.css">
-		<link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
-		<link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css">
+		<link rel="stylesheet" href="bootstrap.css">
+		<link rel="stylesheet" href="bootstrap-responsive.css">
 	    <title>FIND YOUR VEHICLE</title>
         <link rel="icon" href="images/logo.jpg"/>
         <script type="text/javascript" src="../js/verification.js"></script> 
-        <script type="text/javascript" src="../main.js"></script>
+        <!--<script type="text/javascript" src="../main.js"></script>-->
         <script>
          
             function isValidEmail(nick) {
@@ -59,9 +58,10 @@
 		<tr><td><label id="pass"><b>Password: </b></label></td>
 			<td witdh=80><input type="password" placeholder="Write your password" id="passw" name="passw"></td></tr>
         <tr><td><label id="lab"><b></b></label></td>
-            <td><a href="indexUserUpdate.html">Have you forgotten your password? </a></label></td></tr>
+            <td><a href="indexForget.html">Have you forgotten your password? </a></label></td></tr>
 		<tr><td></td>
-			<td width=80 align=center><input class="btn btn-primary" id="log" type="submit" name="submit" value="Log In"></td>
+			<td width=80 align=center><input class="btn btn-primary" id="log" type="submit" name="submit" value="Log In">
+            <input class="btn btn-primary" id="update" type="button" name="submit" value="Update Your Pass" onclick = "location='indexUserUpdate.html'"></td>
 			</tr></tr></table>
 		</form>
 <br>

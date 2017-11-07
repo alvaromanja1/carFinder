@@ -6,11 +6,11 @@
 		<link rel="stylesheet" href="bootstrap.css">
 		<link rel="stylesheet" href="bootstrap-responsive.css">
 		<link rel="stylesheet" type="text/css" href="main.css">
-	<title>DELETE USER</title>
+	<title>FORGOTTEN PASSWORD</title>
     <link rel="icon" href="images/logo.jpg"/>
 </head>
 <body>
-	<center><div class="tit"><h2>INTRODUCE THE USER YOU WANT TO DELETE</h2>
+	<center><div class="tit"><h2>PLEASE, INTRODUCE YOUR EMAIL</h2>
 		<center><div class="Ingreso">
 
 	<table id="logg">
@@ -19,24 +19,20 @@
 <br>
 <!-- formulario registro -->
 
-<form method="post" action="/delete" class="form-resgister">
+<form method="post" action="/forget" class="form-resgister">
   <fieldset>
     <div class="form-group">
       <label id="writeEmail"><b>Write your email:</b></label><br>
-      <input type="text" id="id" name="id" class="form-control"  required placeholder="Write email"/>
-    </div>
-    <div class="form-group">
-      <label id="writePass"><b>Write your password:</b></label><br>
-      <input type="password" id="password" name="pass" class="form-control"  placeholder="Write password" />
+      <input type="email" id="nick" name="nick" class="form-control"  required placeholder="Write email"/>
     </div>
       <br>
-    <input  class="btn btn-primary" type="submit" name="submit" value="Delete user"/>
+    <input  class="btn btn-primary" type="submit" name="submit" value="Ok"/>
     <input  class="btn btn-primary" type="button" name="galery" value="Cancel" onclick = "location='index.html'"/>
 
   </fieldset>
 </form>
 </div>
-</td>
+		</td>
 		</tr>
 		</table>
 		</div></center></div></center>

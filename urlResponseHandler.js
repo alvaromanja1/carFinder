@@ -130,6 +130,7 @@ function updateUser(req, res) {
 }
 
 function sendEmail(req, res){
+      var inputName = req.body.inputName; 
       var email = req.body.email;
       var issue = req.body.issue; 
       var text = req.body.text; 
@@ -165,7 +166,7 @@ function sendEmail(req, res){
     var mailOptions={
         to : email,
         subject : "Message correctly sent" ,
-        text : "Dear Client, your message has been sent to the admin and you will receive an answer briefly."
+        text : 'Dear ' + inputName +', your message has been sent to the admin and you will receive an answer briefly.'
     }
     console.log(mailOptions);
     smtpTransport.sendMail(mailOptions, function(error, response){
@@ -202,6 +203,44 @@ function retrieveCars(req, res){
 }); 
 }
 
+function forgetPass(req, res){
+    var nick = req.body.nick; 
+    
+    MongoClient.connect('mongodb://127.0.0.1:27017/carFinder2', function(err, db) {
+		if(err) throw err;
+    
+    db.collection('users').findOne({"nick": nick}, function(err, result) {
+        if(err) {
+            console.log(err); 
+            return res.status(500).send();   
+        }
+        
+        if(!result) { 
+            console.log('Error');
+            return res.status(404).send();
+        }
+        console.log(result.pass);
+            
+        var mailOptions={
+        to : nick,
+        subject : "Forgotten Password" ,
+        text: 'Dear Client, your password is: ' + result.pass
+        }
+        
+        console.log(mailOptions);
+        smtpTransport.sendMail(mailOptions, function(error, response){
+         if(error){
+            console.log(error);
+             res.end("error");
+         }else{
+            console.log("Message sent: " + response.message);
+            res.redirect('/index.html');
+         }
+    });
+        })
+    });
+}
+
 exports.saveUser2DB = saveUser2DB;
 exports.saveCar2DB = saveCar2DB;
 exports.logIn = logIn;
@@ -209,3 +248,4 @@ exports.deleteUser = deleteUser;
 exports.updateUser = updateUser;
 exports.sendEmail = sendEmail; 
 exports.retrieveCars = retrieveCars; 
+exports.forgetPass = forgetPass; 
