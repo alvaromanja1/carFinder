@@ -14,6 +14,7 @@
                 $('p').hide(); 
                 $('#t03').hide();
                 $('#buy').hide(); 
+                $('#like').hide(); 
                 $.ajax({
                      type: "GET",
                      url: 'http://localhost:2000/getCarInfo',
@@ -42,6 +43,7 @@
                             var numberPlate = $(this).text();
                             $('p').hide(); 
                             $('#t03').hide();
+                            $('#like').show();
                             $('#buy').show();                             
                             //alert(numberPlate); 
                             
@@ -132,9 +134,9 @@
                                        
                                              trHTML3 += 
                                                 
-                                                '<tr><th>' + value.name + 
+                                                '<tr><th id="sellerName">' + value.name + 
                                                 '</th><th>' + value.phone + 
-                                                '</th><th>' + value.mail + 
+                                                '</th><th id="mail">' + value.mail + 
                                                 '</th><th>' + value.localization + 
                                                 '</th></tr>';     
                                           });
@@ -147,7 +149,7 @@
                                     $('#buy').click(function(){
                                         var brand = $("#carBrand").text(); 
                                         var model = $("#carModel").text(); 
-                                        alert("Thanks for buying the " +brand+" "+model+" car.")
+                                        alert("Thanks for buying the " +brand+" "+model+" car.");
                                         var matricula = $("#plate").text(); 
                                         
                                          $.ajax({
@@ -169,6 +171,34 @@
                                             }
                                          });
                                     }); 
+                                    
+                                    
+                                    $('#like').click(function(){
+                                        var mail = $("#mail").text();
+                                        var sellerName = $("#sellerName").text(); 
+                                        var brand = $("#carBrand").text(); 
+                                        var model = $("#carModel").text();
+                                        
+                                         $.ajax({
+                                            url: "/postMail",
+                                            type: "POST",
+                                            dataType: "json",
+                                            data: { mail: mail, sellerName: sellerName, brand: brand, model: model },
+                                            //contentType: "application/json",
+                                            complete: function() {
+                                              //called when complete
+                                                console.log('process complete');
+                                            },
+                                             success: function(data) {
+                                                 console.log(data);
+                                                 console.log('process sucess');
+                                             },
+                                            error: function() {
+                                                console.log('process error');
+                                            }
+                                         });
+                                    });
+                                    
                                 },
                                                
                                 error: function() {
@@ -217,9 +247,14 @@
         </table>
     </div><br>
     
+    <div>
     <form method="post" action="/postToDelete" class="form-resgister">
+    
         <input  class="btn btn-primary" type="submit" name="submit" id="buy" value="Buy" onclick="location='indexCar.html'"/>
+            <img id="like" src="images/like.png">
     </form>
+        
+    </div>
     
 <!--
    $.ajax({

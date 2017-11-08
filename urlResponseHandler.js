@@ -67,7 +67,6 @@ function saveCar2DB(req, res) {
 				console.log("Error produced: " + err);
 			} else {
 				console.log("Información guardada: " + err);
-                res.redirect("/indexAdmin.html"); 
 			}
 		});
 	});
@@ -136,16 +135,6 @@ function sendEmail(req, res){
       var issue = req.body.issue; 
       var text = req.body.text; 
     
-   // MongoClient.connect('mongodb://127.0.0.1:27017/carFinder2', function(err, db) {
-	//	if(err) throw err;
-   //     
-   // db.collection('cars').deleteOne({"plate": plate}, function(err, result) {
-   //       assert.equal(null, err);
-   //       console.log('Car deleted');
-   //       db.close();
-   //     });
-   //  });
-
     //send email
     var mailOptions={
         from: email, 
@@ -308,6 +297,28 @@ function deleteCar(req, res){
     
 }
 
+function sellerSendMail(req, res){
+    var mail = req.body.mail; 
+    var sellerName = req.body.sellerName; 
+    var brand = req.body.brand; 
+    var model = req.body.model; 
+    
+    var mailOptions={
+        to : mail,
+        subject : "Car for sale" ,
+        text : 'Dear '+ sellerName + ', someone is interested in your '+ brand + ' '+ model + '. Please be alerted of your email and phone. '
+    }
+    console.log(mailOptions);
+    smtpTransport.sendMail(mailOptions, function(error, response){
+     if(error){
+            console.log(error);
+        res.end("error");
+     }else{
+            console.log("Message sent: " + response.message);
+         }
+});
+    
+}
 
 exports.saveUser2DB = saveUser2DB;
 exports.saveCar2DB = saveCar2DB;
@@ -320,3 +331,4 @@ exports.forgetPass = forgetPass;
 exports.carInfo = carInfo; 
 exports.carInfoC = carInfoC; 
 exports.deleteCar = deleteCar;
+exports.sellerSendMail = sellerSendMail;

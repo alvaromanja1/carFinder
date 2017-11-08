@@ -78,6 +78,10 @@ app.post('/postToDelete', function(req, res) {
     controller.dispatch(urlResponseHandlers.deleteCar, req, res); 
 }); 
 
+app.post('/postMail', function(req, res) {
+    //console.log(req.body.numberPlate);
+    controller.dispatch(urlResponseHandlers.sellerSendMail, req, res); 
+}); 
 
 // This is where we actually get the server started. We
 // default to port 3000, unless the process has another

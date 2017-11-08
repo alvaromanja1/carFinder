@@ -20,6 +20,9 @@ body {
     align-content: center; 
     vertical-align: middle; 
 }
+#like{
+    width: 8%; 
+}
 table#t01 {
     width: 100%;    
     background-color: #f1f1c1;
