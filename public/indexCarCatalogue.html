@@ -10,9 +10,9 @@
         <link rel="stylesheet" type="text/css" href="main.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script>
-            $(document).ready(function () {
-             //$('#t01').hide();     
+            $(document).ready(function () {   
               //$('#clickme').click(function () {
+                //$('#t02').hide();
                 $.ajax({
                      type: "GET",
                      url: 'http://localhost:2000/getCarInfo',
@@ -26,20 +26,49 @@
                          var trHTML = '';
                       $.each(data, function (key,value) {
                          trHTML += 
-                            '<tr><td>' + value.plate + 
-                            '</td><td>' + value.brand + 
+                            '<tr><td id="tdPlate"><a href="#">' + value.plate + 
+                            '</a></td><td>' + value.brand + 
                             '</td><td>' + value.model + 
                             '</td><td>' + value.year + 
                             '</td></tr>';     
                       });
-
+                          
                         $('#t01').append(trHTML);
                     
+                        
+                
+                        $('#t01').find('td').click(function(){
+                            var numberPlate = $(this).text();
+                            //alert(numberPlate); 
+                            
+                            $.ajax({
+                                url: "/postPlate",
+                                type: "POST",
+                                dataType: "json",
+                                data: { numberPlate: numberPlate },
+                                //contentType: "application/json",
+                                complete: function() {
+                                  //called when complete
+                                  console.log('process complete');
+                                },
+
+                                success: function(data) {
+                                  console.log(data);
+                                  console.log('process sucess');
+                                   },
+                                          
+                                error: function() {
+                                  console.log('process error');
+                                },
+                              });
+                        });
                     })
                     .fail(function(data){
                         console.log("error"); 
-                    }); 
-              }); 
+                    })
+            });
+            
+            
            // }); 
     </script>
 	<title>AVAILABLE VEHICLES</title>
@@ -56,8 +85,51 @@
                 <th>YEAR</th>
               </tr>
         </table>
+    </div>
     
-    </div
+    <!--<div id="carInfoComplete">
+        <table id="t02" border="1">
+              <tr>
+                <th>PLATE</th>
+                <th>BRAND</th> 
+                <th>MODEL</th>
+                <th>COLOUR</th>
+                <th>KM</th>
+                <th>PRICE</th>
+                <th>YEAR</th>
+                <th>HORSEPOWER</th>
+              </tr>
+        </table>
+    </div>
+
+   $.ajax({
+                                     type: "GET",
+                                     url: 'http://localhost:2000/postPlate',
+                                     data: 'data',
+                                     dataType: 'json',
+                                     contentType: "application/json; charset=UTF-8"
+                                    })
+
+                                    .done(function(data){ 
+                                    //var json = JSON.stringify(data); 
+                                         var trHTML = '';
+                                      $.each(data, function (key,value) {
+                                         trHTML += 
+                                            '<tr><td>' + value.plate + 
+                                            '</td><td>' + value.brand + 
+                                            '</td><td>' + value.model + 
+                                            '</td><td>' + value.colour + 
+                                            '</td><td>' + value.km +
+                                            '</td><td>' + value.price +
+                                            '</td><td>' + value.year +
+                                            '</td><td>' + value.horsepower +
+                                            '</td></tr>';     
+                                      });
+                                    $('#t02').append(trHTML);
+                                })
+
+-->
+    
 </body>
 
 </html>

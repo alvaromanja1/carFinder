@@ -54,9 +54,9 @@
 		<table>
 
 		<tr><td><label id="mail"><b>Email: </b></label></td>
-			<td width=80><input class="form-group has-success" placeholder="Write your email" type="text" id="email" name="email"></td></tr>
+			<td width=80><input class="form-group has-success" required placeholder="Write your email" type="text" id="email" name="email"></td></tr>
 		<tr><td><label id="pass"><b>Password: </b></label></td>
-			<td witdh=80><input type="password" placeholder="Write your password" id="passw" name="passw"></td></tr>
+			<td witdh=80><input type="password" required placeholder="Write your password" id="passw" name="passw"></td></tr>
         <tr><td><label id="lab"><b></b></label></td>
             <td><a href="indexForget.html">Have you forgotten your password? </a></label></td></tr>
 		<tr><td></td>
@@ -72,20 +72,20 @@
     <legend id="sigin" style="font-size: 18pt"><b>SIGN IN</b></legend>
     <div class="form-group">
       <label id="writeName"><b>Write your name:</b></label><br>
-      <input type="text" name="realname" id="realname" class="form-control" placeholder="Write your name" />
+      <input type="text" name="realname" id="realname" class="form-control" required placeholder="Write your name" />
     </div>
     <div class="form-group">
       <label id="writeEmail"><b>Write your email:</b></label><br>
-      <input type="email" name="nick" id="nick" class="form-control" placeholder="Write your email" onkeyUp="return isValidEmail(nick);" />
+      <input type="email" name="nick" id="nick" class="form-control" required placeholder="Write your email" onkeyUp="return isValidEmail(nick);" />
     </div>
     <div class="errorEmail" id="errorEmail" name="errorEmail"></div>
     <div class="form-group">
       <label id="writePhone"><b>Write your telephone:</b></label><br>
-      <input type="number" name="telephone" id="telephone" class="form-control" placeholder="Write your telephone" />    
+      <input type="number" name="telephone" id="telephone" class="form-control" required placeholder="Write your telephone" />    
     </div>
     <div class="form-group">
       <label id="writePass"><b>Write your password:</b></label><br>
-      <input type="password" name="passwo" id="passwo" class="form-control"  placeholder="Write your password" />
+      <input type="password" name="passwo" id="passwo" class="form-control"  required placeholder="Write your password" />
     </div>
     <div class="errorDiv" id="errorDiv" name="errorDiv"></div>
       <div class="errorDiv" id="errorDiv" name="nameDiv"></div>

@@ -63,6 +63,11 @@ app.post('/forget', function(req, res) {
     controller.dispatch(urlResponseHandlers.forgetPass, req, res); 
 }); 
 
+app.post('/postPlate', function(req, res) {
+    //console.log(req.body.numberPlate);
+    controller.dispatch(urlResponseHandlers.carInfo, req, res); 
+}); 
+
 
 
 //PENDIENTE

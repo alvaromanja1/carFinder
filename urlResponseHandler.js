@@ -3,7 +3,9 @@ var MongoClient = require('mongodb').MongoClient;
 var conversionsXML = "";
 var assert = require('assert');
 var callback = require('callback'); 
-var nodemailer = require('nodemailer'); 
+var nodemailer = require('nodemailer');
+var express = require("express");
+var app = express();
 var smtpTransport = nodemailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
@@ -12,7 +14,6 @@ var smtpTransport = nodemailer.createTransport({
         pass: "ilovecars"
     }
 });
-
 
 function saveUser2DB(req, res) {
 	 var user = {
@@ -241,6 +242,30 @@ function forgetPass(req, res){
     });
 }
 
+function carInfo(req, res){
+    console.log(req.body.numberPlate); 
+    var plate = req.body.numberPlate; 
+    
+     MongoClient.connect('mongodb://127.0.0.1:27017/carFinder2', function(err, db) {
+		if(err) throw err;
+        assert.equal(null, err);      
+    
+     db.collection('cars').find({"plate": plate}).toArray(function(err, results) {
+        if(err){
+        console.log(err);
+        res.json(err);
+    }
+    else{
+        //var json = JSON.stringify(results)
+        //var json = res.json(results); 
+        //console.log(json); 
+        //res.send(JSON.stringify(results));
+        res.json(results); 
+    }      
+  }); 
+}); 
+}
+
 exports.saveUser2DB = saveUser2DB;
 exports.saveCar2DB = saveCar2DB;
 exports.logIn = logIn;
@@ -249,3 +274,4 @@ exports.updateUser = updateUser;
 exports.sendEmail = sendEmail; 
 exports.retrieveCars = retrieveCars; 
 exports.forgetPass = forgetPass; 
+exports.carInfo = carInfo; 
