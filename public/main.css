@@ -24,8 +24,14 @@ table#t01 {
     width: 100%;    
     background-color: #f1f1c1;
     color: black;
-    overflow: scroll;
-    
+    overflow: scroll; 
+}
+
+table#t02 {
+    width: 100%;    
+    background-color: #f1f1c1;
+    color: black;
+    overflow: scroll; 
 }
 #nick{
     border-radius: 15px; 

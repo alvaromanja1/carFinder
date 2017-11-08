@@ -68,6 +68,11 @@ app.post('/postPlate', function(req, res) {
     controller.dispatch(urlResponseHandlers.carInfo, req, res); 
 }); 
 
+app.get('/getPlate', function(req, res) {
+    //console.log(req.body.numberPlate);
+    controller.dispatch(urlResponseHandlers.carInfoC, req, res); 
+}); 
+
 
 
 //PENDIENTE

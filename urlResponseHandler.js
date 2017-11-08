@@ -266,6 +266,12 @@ function carInfo(req, res){
 }); 
 }
 
+function carInfoC(req, res){
+    carInfoC(); 
+}
+
+
+
 exports.saveUser2DB = saveUser2DB;
 exports.saveCar2DB = saveCar2DB;
 exports.logIn = logIn;
@@ -275,3 +281,4 @@ exports.sendEmail = sendEmail;
 exports.retrieveCars = retrieveCars; 
 exports.forgetPass = forgetPass; 
 exports.carInfo = carInfo; 
+exports.carInfoC = carInfoC; 

@@ -12,7 +12,7 @@
         <script>
             $(document).ready(function () {   
               //$('#clickme').click(function () {
-                //$('#t02').hide();
+                $('#t02').hide();
                 $.ajax({
                      type: "GET",
                      url: 'http://localhost:2000/getCarInfo',
@@ -39,6 +39,7 @@
                 
                         $('#t01').find('td').click(function(){
                             var numberPlate = $(this).text();
+                            
                             //alert(numberPlate); 
                             
                             $.ajax({
@@ -50,12 +51,43 @@
                                 complete: function() {
                                   //called when complete
                                   console.log('process complete');
+                                  $('#t02').hide();
+                                    
+                                    
+                                    $.ajax({
+                                         type: "GET",
+                                         url: 'http://localhost:2000/getPlate',
+                                         data: 'data',
+                                         dataType: 'json',
+                                         contentType: "application/json; charset=UTF-8"
+                                        })
+
+                                        .done(function(data){ 
+                                        //var json = JSON.stringify(data); 
+                                             var trHTML = '';
+                                          $.each(data, function (key,value) {
+                                             trHTML += 
+                                                '<tr><td>' + value.plate + 
+                                                '</td><td>' + value.brand + 
+                                                '</td><td>' + value.model + 
+                                                '</td><td>' + value.year + 
+                                                '</td></tr>';     
+                                          });
+
+                                            $('#t02').append(trHTML);
+                                        })
+                                        .fail(function(data){
+                                            console.log(data); 
+                                        })
+                                    
+                                    
+                                        
                                 },
 
                                 success: function(data) {
                                   console.log(data);
                                   console.log('process sucess');
-                                   },
+                                },
                                           
                                 error: function() {
                                   console.log('process error');
@@ -85,9 +117,9 @@
                 <th>YEAR</th>
               </tr>
         </table>
-    </div>
+    </div><br>
     
-    <!--<div id="carInfoComplete">
+    <div id="carInfoComplete">
         <table id="t02" border="1">
               <tr>
                 <th>PLATE</th>
@@ -101,7 +133,8 @@
               </tr>
         </table>
     </div>
-
+    
+<!--
    $.ajax({
                                      type: "GET",
                                      url: 'http://localhost:2000/postPlate',
@@ -128,8 +161,8 @@
                                     $('#t02').append(trHTML);
                                 })
 
--->
-    
+
+    -->
 </body>
 
 </html>
