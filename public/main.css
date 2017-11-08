@@ -15,6 +15,17 @@ body {
     max-width: 800px;
     padding: 2em 2em 4em;
 }
+
+#welcome{
+    color: black;
+}
+#second{
+    color: black; 
+    
+}
+#five{
+    color: black;
+}
 #logg{
     border: 0; 
     align-content: center; 

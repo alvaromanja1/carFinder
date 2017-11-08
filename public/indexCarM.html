@@ -9,10 +9,10 @@
 	<script type="text/javascript">
 	
         $(document).ready(function() {
-            $(".central").load('indexWelc.html'); 
+            $("#central").load('indexWelc.html'); 
     
             $('#home').click(function(){ 
-                $(".central").load('indexWelc.html'); 
+                $("#central").load('indexWelc.html'); 
                // $.ajax({
                 //    type: "POST",
                   //  url: "indexWelcome.html",
@@ -23,7 +23,7 @@
             });
             
             $('#admin').click(function(){
-				$(".central").load('indexAdmin.html'); 
+				$("#central").load('indexAdmin.html'); 
                 /*$.ajax({
                     type: "POST",
                     url: "inc/products.php",
@@ -42,7 +42,7 @@
                         $('#central').html(a);  
                     }
                 });*/
-				$(".central").load('indexCarCatalogue.html');
+				$("#central").load('indexCarCatalogue.html');
             });
             
             $('#contact').click(function(){ 
@@ -53,7 +53,7 @@
                         $('#central').html(a);  
                     }
                 });*/
-				$(".central").load('indexContactUs.html');
+				$("#central").load('indexContactUs.html');
             });
             
              $('#rate').click(function(){ 
@@ -64,7 +64,7 @@
                         $('#central').html(a);  
                     }
                 });*/
-				$(".central").load('indexRateUs.html');
+				$("#central").load('indexRateUs.html');
             });
             
         });
@@ -72,26 +72,29 @@
     <link rel="icon" href="images/logo.jpg"/>
 </head>
 <body>
-   <div class="content">
-    <header id="header">
-       WALLAcar
+    <div id="content">
+	<div id="header">WALLAcar
     <img id ="close" src="images/log-35496_960_720.png" onclick="location='index.html'">
-    </header>
-    <div class="column-left">
-        <ul id="a">
-            <li><a href="#" id="home" style="cursor:pointer;">Home</a></li>
+    </div>
+    
+	<div id="column-left">
+    	<ul id="menu">
+        	<li><a href="#" id="home" style="cursor:pointer;">Home</a></li>
             <li><a href="#" id="admin" style="cursor:pointer;">Sell a car</a></li>
             <li><a href="#" id="catalogue" style="cursor:pointer;">Buy a car</a></li>
             <li><a href="#" id="contact" style="cursor:pointer;">Contact us</a></li>
             <li><a href="#" id="rate" style="cursor:pointer;">Rate us</a></li>
         </ul>
     </div>
-        <div class="central">
-            
-       </div>
-       <footer>
-        <p><a href="https://github.com/alvaromanja1">GitHub</a></p>
-       </footer>
+	<div id="central">
+		<!--<h1>WELCOME TO WALLAcar</h1><br>
+        <h2>An app where you can sell and buy second hand cars.</h2><br>
+        <h5>Don't forget that this app has been created for the DAS subject.</h5>-->
     </div>
+    
+    <!--<footer>
+        <p><a href="indexFooter.html">More information</a></p>
+    </footer>-->
+</div> 
 </body>
 </html>
