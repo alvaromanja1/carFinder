@@ -260,6 +260,7 @@ function carInfo(req, res){
         //var json = res.json(results); 
         //console.log(json); 
         //res.send(JSON.stringify(results));
+        console.log(results); 
         res.json(results); 
     }      
   }); 
@@ -267,7 +268,28 @@ function carInfo(req, res){
 }
 
 function carInfoC(req, res){
-    carInfoC(); 
+    console.log(req.body.numberPlate); 
+    var plate = req.body.numberPlate; 
+    
+     MongoClient.connect('mongodb://127.0.0.1:27017/carFinder2', function(err, db) {
+		if(err) throw err;
+        assert.equal(null, err);      
+    
+     db.collection('cars').find({"plate": plate}).toArray(function(err, results) {
+        if(err){
+        console.log(err);
+        res.json(err);
+    }
+    else{
+        //var json = JSON.stringify(results)
+        //var json = res.json(results); 
+        //console.log(json); 
+        //res.send(JSON.stringify(results));
+        console.log(results); 
+        res.json(results); 
+    }      
+  }); 
+}); 
 }
 
 

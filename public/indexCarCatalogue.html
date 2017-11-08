@@ -51,35 +51,7 @@
                                 complete: function() {
                                   //called when complete
                                   console.log('process complete');
-                                  $('#t02').hide();
-                                    
-                                    
-                                    $.ajax({
-                                         type: "GET",
-                                         url: 'http://localhost:2000/getPlate',
-                                         data: 'data',
-                                         dataType: 'json',
-                                         contentType: "application/json; charset=UTF-8"
-                                        })
-
-                                        .done(function(data){ 
-                                        //var json = JSON.stringify(data); 
-                                             var trHTML = '';
-                                          $.each(data, function (key,value) {
-                                             trHTML += 
-                                                '<tr><td>' + value.plate + 
-                                                '</td><td>' + value.brand + 
-                                                '</td><td>' + value.model + 
-                                                '</td><td>' + value.year + 
-                                                '</td></tr>';     
-                                          });
-
-                                            $('#t02').append(trHTML);
-                                        })
-                                        .fail(function(data){
-                                            console.log(data); 
-                                        })
-                                    
+                                  
                                     
                                         
                                 },
@@ -87,7 +59,63 @@
                                 success: function(data) {
                                   console.log(data);
                                   console.log('process sucess');
+                                    $('#t02').show();
+                                    
+                               //      $.ajax({
+                               //          type: "GET",
+                               //          url: 'http://localhost:2000/getPlate',
+                               //          data: 'data',
+                                //         dataType: 'json',
+                               //          contentType: "application/json; charset=UTF-8"
+                               //         })
+                               //         .done(function(data){ 
+                                //        $('#t02').show();
+                               //         //var json = JSON.stringify(data); 
+                                //             var trHTML = '';
+                               //           $.each(data, function (key,value) {
+                                //             trHTML += 
+                                 //               '<tr><td>' + value.plate + 
+                               //                 '</td><td>' + value.brand + 
+                               //                 '</td><td>' + value.model + 
+                               //                 '</td><td>' + value.year + 
+                               //                 '</td></tr>';     
+                               //           });
+
+                               //             $('#t02').append(trHTML);
+                               //         })
+                                      var trHTML2 = '';
+                                         trHTML2 += 
+                                                 '<tr><th>' + "PLATE" + 
+                                                '</th><th>' + "BRAND" +
+                                                '</th><th>' + "MODEL" +
+                                                '</th><th>' + "COLOUR" +
+                                                '</th><th>' + "KM" +
+                                                '</th><th>' + "PRICE" +
+                                                '</th><th>' + "YEAR" +
+                                                '</th><th>' + "HORSEPOWER" +
+                                                '</th></tr>';  
+                                        
+                                    $.each(data, function (key,value) {
+                                       
+                                             trHTML2 += 
+                                                
+                                                '<tr><th>' + value.plate + 
+                                                '</th><th>' + value.brand + 
+                                                '</th><th>' + value.model + 
+                                                '</th><th>' + value.colour + 
+                                                '</th><th>' + value.km +
+                                                '</th><th>' + value.price +
+                                                '</th><th>' + value.year +
+                                                '</th><th>' + value.horsepower +
+                                                '</th></tr>';     
+                                          });
+
+                                            $('#t02').html(trHTML2);
+                                    
                                 },
+                                        
+                                
+                              
                                           
                                 error: function() {
                                   console.log('process error');
@@ -122,14 +150,7 @@
     <div id="carInfoComplete">
         <table id="t02" border="1">
               <tr>
-                <th>PLATE</th>
-                <th>BRAND</th> 
-                <th>MODEL</th>
-                <th>COLOUR</th>
-                <th>KM</th>
-                <th>PRICE</th>
-                <th>YEAR</th>
-                <th>HORSEPOWER</th>
+                
               </tr>
         </table>
     </div>
