@@ -33,6 +33,13 @@ table#t02 {
     color: black;
     overflow: scroll; 
 }
+
+table#t03 {
+    width: 100%;    
+    background-color: #f1f1c1;
+    color: black;
+    overflow: scroll; 
+}
 #nick{
     border-radius: 15px; 
 }

@@ -13,6 +13,8 @@
             $(document).ready(function () {   
               //$('#clickme').click(function () {
                 $('#t02').hide();
+                $('p').hide(); 
+                $('#t03').hide();
                 $.ajax({
                      type: "GET",
                      url: 'http://localhost:2000/getCarInfo',
@@ -39,6 +41,8 @@
                 
                         $('#t01').find('td').click(function(){
                             var numberPlate = $(this).text();
+                            $('p').hide(); 
+                            $('#t03').hide();
                             
                             //alert(numberPlate); 
                             
@@ -60,6 +64,7 @@
                                   console.log(data);
                                   console.log('process sucess');
                                     $('#t02').show();
+                                    $('p').show(); 
                                     
                                //      $.ajax({
                                //          type: "GET",
@@ -112,6 +117,33 @@
 
                                             $('#t02').html(trHTML2);
                                     
+                                    $('p').click(function(){
+                                         $('p').hide(); 
+                                         $('#t03').show(); 
+                                        
+                                    var trHTML3 = '';
+                                         trHTML3 += 
+                                                 '<tr><th>' + "SELLER NAME" + 
+                                                '</th><th>' + "SELLER PHONE" +
+                                                '</th><th>' + "SELLER MAIL" +
+                                                '</th><th>' + "SELLER LOCALIZATION" +
+                                                '</th></tr>';  
+                                        
+                                    $.each(data, function (key,value) {
+                                       
+                                             trHTML3 += 
+                                                
+                                                '<tr><th>' + value.name + 
+                                                '</th><th>' + value.phone + 
+                                                '</th><th>' + value.mail + 
+                                                '</th><th>' + value.localization + 
+                                                '</th></tr>';     
+                                          });
+
+                                            $('#t03').html(trHTML3);
+                                        
+                                    
+                                    }); 
                                 },
                                         
                                 
@@ -149,6 +181,16 @@
     
     <div id="carInfoComplete">
         <table id="t02" border="1">
+              <tr>
+                
+              </tr>
+        </table>
+    </div><br>
+    
+    <p>Show seller info</p>
+    
+    <div id="sellerInfo">
+        <table id="t03" border="1">
               <tr>
                 
               </tr>
