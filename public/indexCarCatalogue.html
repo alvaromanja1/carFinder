@@ -3,8 +3,6 @@
 <head>
 
 	<meta charset="utf-8">
-		<!--<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
-		<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap-responsive.css">-->
 		<link rel="stylesheet" type="text/css" href="bootstrap.css">
         <link rel="stylesheet" type="text/css" href="bootstrap-responsive.css">
         <link rel="stylesheet" type="text/css" href="main.css">
@@ -15,6 +13,7 @@
                 $('#t02').hide();
                 $('p').hide(); 
                 $('#t03').hide();
+                $('#buy').hide(); 
                 $.ajax({
                      type: "GET",
                      url: 'http://localhost:2000/getCarInfo',
@@ -43,7 +42,7 @@
                             var numberPlate = $(this).text();
                             $('p').hide(); 
                             $('#t03').hide();
-                            
+                            $('#buy').show();                             
                             //alert(numberPlate); 
                             
                             $.ajax({
@@ -104,9 +103,9 @@
                                        
                                              trHTML2 += 
                                                 
-                                                '<tr><th>' + value.plate + 
-                                                '</th><th>' + value.brand + 
-                                                '</th><th>' + value.model + 
+                                                '<tr><th id="plate">' + value.plate + 
+                                                '</th><th id="carBrand">' + value.brand + 
+                                                '</th><th id="carModel">' + value.model + 
                                                 '</th><th>' + value.colour + 
                                                 '</th><th>' + value.km +
                                                 '</th><th>' + value.price +
@@ -144,6 +143,15 @@
                                         
                                     
                                     }); 
+                                
+                                    $('#buy').click(function(){
+                                        var brand = $("#carBrand").text(); 
+                                        var model = $("#carModel").text(); 
+                                        alert("Thanks for buying the " +brand+" "+model+" car.")
+                                        var matricula = $("#plate").text(); 
+                                        
+                                        
+                                    }); 
                                 },
                                         
                                 
@@ -159,9 +167,7 @@
                         console.log("error"); 
                     })
             });
-            
-            
-           // }); 
+         
     </script>
 	<title>AVAILABLE VEHICLES</title>
     <link rel="icon" href="images/logo.jpg"/>
@@ -195,7 +201,11 @@
                 
               </tr>
         </table>
-    </div>
+    </div><br>
+    
+    <form method="post" action="/insertUser" class="form-resgister">
+        <input  class="btn btn-primary" type="submit" name="submit" id="buy" value="Buy" onclick="location='indexCar.html'"/>
+    </form>
     
 <!--
    $.ajax({
