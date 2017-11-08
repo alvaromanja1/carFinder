@@ -150,13 +150,27 @@
                                         alert("Thanks for buying the " +brand+" "+model+" car.")
                                         var matricula = $("#plate").text(); 
                                         
-                                        
+                                         $.ajax({
+                                            url: "/postToDelete",
+                                            type: "POST",
+                                            dataType: "json",
+                                            data: { matricula: matricula },
+                                            //contentType: "application/json",
+                                            complete: function() {
+                                              //called when complete
+                                                console.log('process complete');
+                                            },
+                                             success: function(data) {
+                                                 console.log(data);
+                                                 console.log('process sucess');
+                                             },
+                                            error: function() {
+                                                console.log('process error');
+                                            }
+                                         });
                                     }); 
                                 },
-                                        
-                                
-                              
-                                          
+                                               
                                 error: function() {
                                   console.log('process error');
                                 },
@@ -203,7 +217,7 @@
         </table>
     </div><br>
     
-    <form method="post" action="/insertUser" class="form-resgister">
+    <form method="post" action="/postToDelete" class="form-resgister">
         <input  class="btn btn-primary" type="submit" name="submit" id="buy" value="Buy" onclick="location='indexCar.html'"/>
     </form>
     

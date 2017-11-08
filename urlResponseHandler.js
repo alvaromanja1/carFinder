@@ -292,6 +292,21 @@ function carInfoC(req, res){
 }); 
 }
 
+function deleteCar(req, res){
+     console.log(req.body.matricula); 
+     var plate = req.body.matricula; 
+    
+    MongoClient.connect('mongodb://127.0.0.1:27017/carFinder2', function(err, db) {
+		if(err) throw err;
+   
+     db.collection('cars').deleteOne({"plate": plate}, function(err, result) {
+      assert.equal(null, err);
+      console.log('Car deleted');
+      db.close();
+    });
+ });
+    
+}
 
 
 exports.saveUser2DB = saveUser2DB;
@@ -304,3 +319,4 @@ exports.retrieveCars = retrieveCars;
 exports.forgetPass = forgetPass; 
 exports.carInfo = carInfo; 
 exports.carInfoC = carInfoC; 
+exports.deleteCar = deleteCar;

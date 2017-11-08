@@ -73,22 +73,9 @@ app.get('/getPlate', function(req, res) {
     controller.dispatch(urlResponseHandlers.carInfoC, req, res); 
 }); 
 
-
-
-//PENDIENTE
-app.post('/getCarCompleteInfo', function(req, res, next) {
- var plate = req.body.plate; 
-    
-    mongo.connect(url, function(err, db) {
-        db.collection('cars').find({"plate": plate}).toArray((err, result) => {
-         console.log(plate); 
-            if(err){   
-          return console.log(err); 
-         }
-         assert.equal(null, err);
-         res.render('indexCar.ejs', {quotes: result}); 
-     }); 
- });
+app.post('/postToDelete', function(req, res) {
+    //console.log(req.body.numberPlate);
+    controller.dispatch(urlResponseHandlers.deleteCar, req, res); 
 }); 
 
 
