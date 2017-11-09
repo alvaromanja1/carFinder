@@ -9,11 +9,12 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script>
             $(document).ready(function() {                
-                $('#text').hide(); 
-                $('#model').hide(); 
+                //$('#text').hide(); 
+                //$('#model').hide(); 
                 $('#cboxYes').click(function(){
-                    $('#text').show(); 
-                    $('#model').show(); 
+                     $("div#a").show();
+                    //$('#text').show(); 
+                    //$('#model').show(); 
                 }); 
             }); 
             function popUp() {
@@ -73,7 +74,7 @@
           </div>
             
         </div>    
-    <div class="form-group">
+    <div id="a" class="improvemets" style="display: none;">
       <br><label id="model"><b>What would you improve?</b></label><br>
       <textarea id="text" name="text"></textarea>
     </div>
