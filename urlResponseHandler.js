@@ -34,6 +34,7 @@ function saveUser2DB(req, res) {
 				console.log("Error produced: " + err);
 			} else {
 				console.log("Información guardada: " + err);
+                res.redirect('/');
 			}
 		});
 	});
@@ -67,6 +68,7 @@ function saveCar2DB(req, res) {
 				console.log("Error produced: " + err);
 			} else {
 				console.log("Información guardada: " + err);
+                res.redirect('/indexCar.html'); 
 			}
 		});
 	});
