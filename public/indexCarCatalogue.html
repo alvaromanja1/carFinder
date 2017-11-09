@@ -11,10 +11,10 @@
             $(document).ready(function () {   
               //$('#clickme').click(function () {
                 $('#t02').hide();
-                $('p').hide(); 
+                //$('p').hide(); 
                 $('#t03').hide();
-                $('#buy').hide(); 
-                $('#like').hide(); 
+                //$('#buy').hide(); 
+                //$('#like').hide(); 
                 $.ajax({
                      type: "GET",
                      url: 'http://localhost:2000/getCarInfo',
@@ -26,6 +26,12 @@
                     .done(function(data){ 
                     //var json = JSON.stringify(data); 
                          var trHTML = '';
+                    trHTML += 
+                                    '<tr><th>' + "PLATE" + 
+                                    '</th><th>' + "BRAND" +
+                                    '</th><th>' + "MODEL" +
+                                    '</th><th>' + "YEAR" +
+                                    '</th></tr>';  
                       $.each(data, function (key,value) {
                          trHTML += 
                             '<tr><td id="tdPlate"><a href="#">' + value.plate + 
@@ -41,10 +47,11 @@
                 
                         $('#t01').find('td').click(function(){
                             var numberPlate = $(this).text();
-                            $('p').hide(); 
+                            //$('p').hide(); 
                             $('#t03').hide();
-                            $('#like').show();
-                            $('#buy').show();                             
+                            $("div#bottomDiv").show();
+                            //$('#like').show();
+                            //$('#buy').show();                             
                             //alert(numberPlate); 
                             
                             $.ajax({
@@ -105,7 +112,7 @@
                                        
                                              trHTML2 += 
                                                 
-                                                '<tr><th id="plate">' + value.plate + 
+                                                '<tr><th id="Plate">' + value.plate + 
                                                 '</th><th id="carBrand">' + value.brand + 
                                                 '</th><th id="carModel">' + value.model + 
                                                 '</th><th>' + value.colour + 
@@ -150,7 +157,7 @@
                                         var brand = $("#carBrand").text(); 
                                         var model = $("#carModel").text(); 
                                         alert("Thanks for buying the " +brand+" "+model+" car.");
-                                        var matricula = $("#plate").text(); 
+                                        var matricula = $("#Plate").text(); 
                                         
                                          $.ajax({
                                             url: "/postToDelete",
@@ -221,10 +228,7 @@
     <div id="carInfo">
         <table id="t01" border="1">
               <tr>
-                <th>PLATE</th>
-                <th>BRAND</th> 
-                <th>MODEL</th>
-                <th>YEAR</th>
+                
               </tr>
         </table>
     </div><br>
@@ -237,7 +241,7 @@
         </table>
     </div><br>
     
-    <p>Show seller info</p>
+    <p style="display: none;">Show seller info</p>
     
     <div id="sellerInfo">
         <table id="t03" border="1">
@@ -247,7 +251,7 @@
         </table>
     </div><br>
     
-    <div>
+    <div id="bottomDiv"  class="bottomDi" style="display: none;">
     <form method="post" action="/postToDelete" class="form-resgister">
         <div id="bottom">
         <input  class="btn btn-primary" type="submit" name="submit" id="buy" value="Buy" onclick="location='indexCar.html'"/>
