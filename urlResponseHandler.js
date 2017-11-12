@@ -86,7 +86,6 @@ function logIn(req, res) {
             console.log(err); 
             return res.status(500).send();   
         }
-        
         if(!result) { 
             console.log('Error');
             return res.status(404).send();
@@ -107,6 +106,7 @@ function deleteUser(req, res) {
      db.collection('users').deleteOne({"nick": id}, function(err, result) {
       assert.equal(null, err);
       console.log('User deleted');
+      res.redirect('/index.html');
       db.close();
     });
  });
@@ -126,6 +126,7 @@ function updateUser(req, res) {
   db.collection('users').updateOne({"nick": nick, "pass": oldPass}, {$set: item}, function (err, result){
       assert.equal(null, err);
       console.log('Password updated');
+      res.redirect('/index.html');
       db.close();
     });
   });
@@ -293,6 +294,7 @@ function deleteCar(req, res){
      db.collection('cars').deleteOne({"plate": plate}, function(err, result) {
       assert.equal(null, err);
       console.log('Car deleted');
+      res.redirect('/indexCar.html');
       db.close();
     });
  });
