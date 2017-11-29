@@ -6,6 +6,7 @@ var callback = require('callback');
 var nodemailer = require('nodemailer');
 var express = require("express");
 var app = express();
+var alert = require ("alert-node");
 var smtpTransport = nodemailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
@@ -24,11 +25,20 @@ function saveUser2DB(req, res) {
         telephone: req.body.telephone, 
         pass: req.body.passwo
   };
+    
+    var nickn = req.body.nick;
 	
     MongoClient.connect('mongodb://127.0.0.1:27017/carFinder2', function(err, db) {
 		if(err) throw err;
-
-		db.collection('users').insertOne(user, function(err, result) {
+        
+        db.collection('users').findOne({"nick": nickn}, function(err, result) {
+        if(err) {
+            console.log(err); 
+            return res.status(500).send();   
+        }
+        
+        if(!result) { 
+            db.collection('users').insertOne(user, function(err, result) {
             assert.equal(null, err);
 			if (err) console.warn(err.message);
 			if (err && err.message.indexOf('E11000 ') !== -1) {
@@ -39,7 +49,15 @@ function saveUser2DB(req, res) {
                 res.redirect('/');
 			}
 		});
+        }
+        else{
+            console.log('Error, user already exists');
+            alert('Error, the user already exists, create a new one.');
+            return res.redirect("/index.html");
+            return res.status(404).send();
+        }
 	});
+});
 }
 
 function saveCar2DB(req, res) {
@@ -77,6 +95,7 @@ function saveCar2DB(req, res) {
 }
 
 function logIn(req, res) {
+    
     var mail = req.body.email; 
     var pass = req.body.passw; 
     
@@ -89,30 +108,53 @@ function logIn(req, res) {
             return res.status(500).send();   
         }
         if(!result) { 
-            console.log('Error');
-            return res.status(404).send();
+            alert('Incorrect user info, please try again');
+            console.log('Error, incorrect user info');
+            return res.redirect("/index.html");
+            //return res.status(404).send();   
         }
-        console.log('Logged In correctly');
-        res.redirect('/indexCar.html');
-        return res.status(200).send(); 
+        else{
+            console.log('Logged In correctly');
+            res.redirect('/indexCar.html');
+            return res.status(200).send(); 
+            }
+           
         })
     });
 }
 
 function deleteUser(req, res) {
    var id = req.body.id;
+   var pass = req.body.password;
 
      MongoClient.connect('mongodb://127.0.0.1:27017/carFinder2', function(err, db) {
 		if(err) throw err;
    
-     db.collection('users').deleteOne({"nick": id}, function(err, result) {
+      db.collection('users').findOne({"nick": id, "pass": pass}, function(err, result) {
+        if(err) {
+            console.log(err); 
+            return res.status(500).send();   
+        }
+        
+        if(!result) { 
+            console.log('Error, incorrect info');
+            alert('Incorrect information, please try again');
+            return res.redirect("/indexUserDelete.html");
+            return res.status(404).send();
+        }
+        else{
+    
+    db.collection('users').deleteOne({"nick": id, "pass": pass}, function(err, result) {
       assert.equal(null, err);
       console.log('User deleted');
       res.redirect('/index.html');
       db.close();
     });
+    }
  });
+});
 }
+
 
 function updateUser(req, res) {
  var item = {
@@ -125,13 +167,30 @@ function updateUser(req, res) {
   MongoClient.connect('mongodb://127.0.0.1:27017/carFinder2', function(err, db) {
 		if(err) throw err;
       
-  db.collection('users').updateOne({"nick": nick, "pass": oldPass}, {$set: item}, function (err, result){
-      assert.equal(null, err);
-      console.log('Password updated');
-      res.redirect('/index.html');
-      db.close();
+   db.collection('users').findOne({"nick": nick, "pass":oldPass}, function(err, result) {
+        if(err) {
+            console.log(err); 
+            return res.status(500).send();   
+        }
+        
+        if(!result) { 
+            console.log('Error, incorrect info');
+            alert('Incorrect information, please try again');
+            return res.redirect("/indexUserUpdate.html");
+            return res.status(404).send();
+        }
+        else{
+        
+      
+            db.collection('users').updateOne({"nick": nick, "pass": oldPass}, {$set: item}, function (err, result){
+                assert.equal(null, err);
+                console.log('Password updated');
+                res.redirect('/index.html');
+                db.close();
+            });
+        }
     });
-  });
+});
 }
 
 function sendEmail(req, res){
@@ -211,9 +270,12 @@ function forgetPass(req, res){
         }
         
         if(!result) { 
-            console.log('Error');
+            console.log('Error, incorrect email');
+            alert('Incorrect email, please try again');
+            return res.redirect("/indexForget.html");
             return res.status(404).send();
         }
+        else{
         console.log(result.pass);
             
         var mailOptions={
@@ -232,6 +294,7 @@ function forgetPass(req, res){
             res.redirect('/index.html');
          }
     });
+        }
         })
     });
 }

@@ -28,13 +28,11 @@ app.post('/insertCar', function(req, res) {
 });
 
 app.post('/login', (req, res) => {
-  console.log("Logged in correctly");
   controller.dispatch(urlResponseHandlers.logIn, req, res);
 }); 
 
 //delete user
 app.post('/delete', function(req, res, next) {
-  console.log("User Deleted");
   controller.dispatch(urlResponseHandlers.deleteUser, req, res);
 }); 
         
