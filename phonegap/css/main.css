@@ -1,0 +1,278 @@
+
+body {
+    background: linear-gradient(#FAFAD2, white, #FAFAD2);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
+    font-size: 16px;
+    line-height: 1.5;
+    font-family:  Geneva, Arial, Helvetica, sans-serif;
+    color: #545454;
+    font-size: 16px;
+    padding: 2em 2em 4em;
+    
+
+}
+
+#welcome{
+    color: black;
+}
+#second{
+    color: black; 
+    
+}
+#five{
+    color: black;
+    text-align: center;
+}
+#logg{
+    border: 0; 
+    align-content: center; 
+    vertical-align: middle; 
+}
+#like{
+    width: 8%; 
+}
+
+table#t01 {
+    width: 100%;    
+    background-color: #f1f1c1;
+    color: black;
+    overflow: scroll; 
+}
+
+table#t02 {
+    width: 100%;    
+    background-color: #f1f1c1;
+    color: black;
+    overflow: scroll; 
+}
+
+table#t03 {
+    width: 100%;    
+    background-color: #f1f1c1;
+    color: black;
+    overflow: scroll; 
+}
+#nick{
+    border-radius: 15px; 
+}
+#sigin{
+    color: #0000FF; 
+    font-size: 25px; 
+}
+#login{
+    color: #0000FF;
+    font-size: 18px; 
+}
+#lab{
+    font-size: 14pt;
+}
+#email{
+    border-radius: 15px; 
+}
+#passw{
+    border-radius: 15px; 
+}
+#writeName{
+    color: black; 
+    font-size: 14pt;
+}
+#writeEmail{
+    color: black; 
+    font-size: 14pt;
+}
+#writePhone{
+    color: black; 
+    font-size: 14pt;
+}
+#writePass{
+    color: black; 
+    font-size: 14pt;
+}
+#mail{
+    color: black; 
+    font-size: 14pt; 
+}
+#pass{
+    color:black; 
+    font-size: 14pt; 
+}
+#inputPass{
+    border-radius: 15px; 
+}
+#passwo{
+    border-radius: 15px; 
+}
+#realname{
+    border-radius: 15px; 
+}
+#vehiclePrice{
+    font-size: 40px;
+    color: black; 
+    text-align: center; 
+    
+}
+#map {
+        height: 400px;
+        width: 100%;
+       }
+
+#tableCarsAvailable{
+    color: white; 
+    border-collapse: collapse;
+    text-align: center; 
+    
+}
+#Writeplate{
+    color: black; 
+    font-size: 14pt; 
+}
+#carInfo{
+    text-align: center; 
+    color: white; 
+}
+
+#writePlate{
+    color:black;
+    font-size: 14pt; 
+}
+#brand{
+    color:black; 
+    font-size: 14pt; 
+}
+#model{
+    color:black; 
+    font-size: 14pt; 
+}
+#price{
+    color:black; 
+    font-size: 14pt; 
+}
+#km{
+    color:black; 
+    font-size: 14pt; 
+}
+#colour{
+    color:black; 
+    font-size: 14pt; 
+}
+#year{
+    color:black;
+    font-size: 14pt; 
+}
+#horsepower{
+    color:black; 
+    font-size: 14pt; 
+}
+#plate{
+    border-radius: 15px; 
+}
+#name{
+    color:black;
+    font-size: 14pt; 
+}
+#inputName{
+    border-radius: 15px; 
+}
+#phone{
+    color:black;
+    font-size: 14pt; 
+}
+input.form-control2{
+    border-radius: 15px; 
+}
+input.form-control{
+    border-radius: 15px; 
+}
+
+#logo {
+    text-align: right; 
+    width: 40%;
+    height: auto; 
+    height:100px;
+    width:100px;
+    position:absolute;  
+}
+#text{
+    text-align: left;
+    padding:  0.4em;
+    padding-bottom:150px;
+    width: 200px;
+    height: 10px; 
+    margin: 0 0 0 -17px;
+    border-radius: 15px; 
+}
+
+
+#radioGroup .wrap {
+  display: inline-block;
+}
+#radioGroup label {
+  display: block;
+  text-align: center;
+  margin: 0 0.2em;
+}
+#radioGroup input[type="radio"] {
+  display: block;
+  margin: 0.5em auto;
+}
+
+#radioGroup2 .wrap {
+  display: inline-block;
+}
+#radioGroup2 label {
+  display: block;
+  text-align: center;
+  margin: 0 0.2em;
+}
+#radioGroup2 input[type="radio"] {
+  display: block;
+  margin: 0.5em auto;
+}
+h1 {
+    color: white;
+    font-weight: 600;
+    line-height: 1.3;
+    font-family: fantasy; 
+    text-align: center; 
+}
+
+h2 {
+    color: #0000FF;
+    font-weight: 600;
+    line-height: 1.3;
+    text-align: center; 
+}
+
+h3{
+    color: #000000; 
+}
+
+a {
+    color: #0083e8;
+}
+
+b, strong {
+    font-weight: 600;
+}
+#carAdjustments {
+    color: white; 
+}
+
+#telephone{
+    color: black; 
+    border-radius: 15px; 
+}
+fieldset {
+width: 25em;
+border: none; 
+}
+img {
+    -webkit-animation: colorize 2s cubic-bezier(0, 0, .78, .36) 1;
+            animation: colorize 2s cubic-bezier(0, 0, .78, .36) 1;
+    background: transparent;
+    border: 10px solid rgba(0, 0, 0, 0);
+    border-radius: 4px;
+    display: block;
+    margin: 1.3em auto;
+    max-width: 95%;
+}

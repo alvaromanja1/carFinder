@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/bootstrap-responsive.css">
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            function popUp() {
+                    alert("Your message has been sent!"); 
+                
+            }
+        </script>
+	<title>CONTACT US</title>
+    <link rel="icon" href="images/logo.jpg"/>
+</head>
+<body>
+	<center><div class="tit"><h2>CONTACT US</h2>
+		<center>
+        <div class="Ingreso">
+<!-- formulario registro -->
+
+<form method="post" action="/send" class="form-resgister">
+  <fieldset>
+    <div class="form-group">
+      <label id="name"><b>Write your name:</b></label>
+      <input type="text" name="inputName" id="inputName" class="form-control" placeholder="Name" />
+    </div><br>
+    <div class="form-group">
+      <label id="brand"><b>Write your email:</b></label>
+      <input type="email" name="email" id="email" class="form-control" placeholder="Email" />
+    </div><br>
+    <div class="form-group">
+      <label id="model"><b>Write your issue:</b></label>
+      <input type="text" name="issue" id="issue" class="form-control" placeholder="Issue"/>
+    </div><br>
+    <div class="form-group">
+      <label id="colour"><b>Write the text:</b></label>
+      <textarea id="text" name="text"></textarea>
+    </div><br>
+    <input  class="btn btn-primary" type="submit" name="submit" value="Send" onclick="popUp()"/>
+      </div>
+    </fieldset>
+</form>
+</div>
+</body>
+</html>

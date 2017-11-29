@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/bootstrap-responsive.css">
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+	<title>DELETE USER</title>
+    <link rel="icon" href="images/logo.jpg"/>
+</head>
+<body>
+	<center><div class="tit"><h2>INTRODUCE THE USER YOU WANT TO DELETE</h2>
+		<center><div class="Ingreso">
+
+	<table id="logg">
+		<tr>
+		<td rowspan=2>
+<br>
+<!-- formulario registro -->
+
+<form method="post" action="/delete" class="form-resgister">
+  <fieldset>
+    <div class="form-group">
+      <label id="writeEmail"><b>Write your email:</b></label><br>
+      <input type="text" id="id" name="id" class="form-control"  required placeholder="Write email"/>
+    </div>
+    <div class="form-group">
+      <label id="writePass"><b>Write your password:</b></label><br>
+      <input type="password" id="password" name="pass" class="form-control"  placeholder="Write password" />
+    </div>
+      <br>
+    <input  class="btn btn-primary" type="submit" name="submit" value="Delete user"/>
+    <input  class="btn btn-primary" type="button" name="galery" value="Cancel" onclick = "location='index.html'"/>
+
+  </fieldset>
+</form>
+</div>
+</td>
+		</tr>
+		</table>
+		</div></center></div></center>
+
+	
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/bootstrap-responsive.css">
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+	<title>RESTORE PASSWORD</title>
+    <link rel="icon" href="images/logo.jpg"/>
+</head>
+<body>
+	<center><div class="tit"><h2>PLEASE, INTRODUCE YOUR EMAIL AND YOUR NEW PASSWORD</h2>
+		<center><div class="Ingreso">
+
+	<table id="logg">
+		<tr>
+		<td rowspan=2>
+<br>
+<!-- formulario registro -->
+
+<form method="post" action="/update" class="form-resgister">
+  <fieldset>
+    <div class="form-group">
+      <label id="writeEmail"><b>Write your email:</b></label><br>
+      <input type="text" id="nick" name="nick" class="form-control"  required placeholder="Write email"/>
+    </div>
+    <div class="form-group">
+      <label id="writePass"><b>Write your old password:</b></label><br>
+      <input type="password" id="oldPass" name="oldPass" class="form-control"  placeholder="Old password" />
+    </div>
+    <div class="form-group">
+      <label id="writePass"><b>Write your new password:</b></label><br>
+      <input type="password" id="inputPass" name="pass" class="form-control"  placeholder="New password" />
+    </div>
+      <br>
+    <input  class="btn btn-primary" type="submit" name="submit" value="Update password"/>
+    <input  class="btn btn-primary" type="button" name="galery" value="Cancel" onclick = "location='index.html'"/>
+
+  </fieldset>
+</form>
+</div>
+		</td>
+		</tr>
+		</table>
+		</div></center></div></center>
+
+	
+</body>
+
+</html>

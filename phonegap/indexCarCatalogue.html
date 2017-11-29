@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {   
+              //$('#clickme').click(function () {
+                $('#t02').hide();
+                //$('p').hide(); 
+                $('#t03').hide();
+                //$('#buy').hide(); 
+                //$('#like').hide(); 
+                $.ajax({
+                     type: "GET",
+                     url: 'http://localhost:2000/getCarInfo',
+                     data: 'data',
+                     dataType: 'json',
+                     contentType: "application/json; charset=UTF-8"
+                    })
+
+                    .done(function(data){ 
+                    //var json = JSON.stringify(data); 
+                         var trHTML = '';
+                    trHTML += 
+                                    '<tr><th>' + "PLATE" + 
+                                    '</th><th>' + "BRAND" +
+                                    '</th><th>' + "MODEL" +
+                                    '</th><th>' + "YEAR" +
+                                    '</th></tr>';  
+                      $.each(data, function (key,value) {
+                         trHTML += 
+                            '<tr><td id="tdPlate"><a href="#">' + value.plate + 
+                            '</a></td><td>' + value.brand + 
+                            '</td><td>' + value.model + 
+                            '</td><td>' + value.year + 
+                            '</td></tr>';     
+                      });
+                          
+                        $('#t01').append(trHTML);
+                    
+                        
+                
+                        $('#t01').find('td').click(function(){
+                            var numberPlate = $(this).text();
+                            //$('p').hide(); 
+                            $('#t03').hide();
+                            $("div#bottomDiv").show();
+                            //$('#like').show();
+                            //$('#buy').show();                             
+                            //alert(numberPlate); 
+                            
+                            $.ajax({
+                                url: "/postPlate",
+                                type: "POST",
+                                dataType: "json",
+                                data: { numberPlate: numberPlate },
+                                //contentType: "application/json",
+                                complete: function() {
+                                  //called when complete
+                                  console.log('process complete');
+                                  
+                                    
+                                        
+                                },
+
+                                success: function(data) {
+                                  console.log(data);
+                                  console.log('process sucess');
+                                    $('#t02').show();
+                                    $('p').show(); 
+                                    
+                               //      $.ajax({
+                               //          type: "GET",
+                               //          url: 'http://localhost:2000/getPlate',
+                               //          data: 'data',
+                                //         dataType: 'json',
+                               //          contentType: "application/json; charset=UTF-8"
+                               //         })
+                               //         .done(function(data){ 
+                                //        $('#t02').show();
+                               //         //var json = JSON.stringify(data); 
+                                //             var trHTML = '';
+                               //           $.each(data, function (key,value) {
+                                //             trHTML += 
+                                 //               '<tr><td>' + value.plate + 
+                               //                 '</td><td>' + value.brand + 
+                               //                 '</td><td>' + value.model + 
+                               //                 '</td><td>' + value.year + 
+                               //                 '</td></tr>';     
+                               //           });
+
+                               //             $('#t02').append(trHTML);
+                               //         })
+                                      var trHTML2 = '';
+                                         trHTML2 += 
+                                                 '<tr><th>' + "PLATE" + 
+                                                '</th><th>' + "BRAND" +
+                                                '</th><th>' + "MODEL" +
+                                                '</th><th>' + "COLOUR" +
+                                                '</th><th>' + "KM" +
+                                                '</th><th>' + "PRICE" +
+                                                '</th><th>' + "YEAR" +
+                                                '</th><th>' + "HORSEPOWER" +
+                                                '</th></tr>';  
+                                        
+                                    $.each(data, function (key,value) {
+                                       
+                                             trHTML2 += 
+                                                
+                                                '<tr><th id="Plate">' + value.plate + 
+                                                '</th><th id="carBrand">' + value.brand + 
+                                                '</th><th id="carModel">' + value.model + 
+                                                '</th><th>' + value.colour + 
+                                                '</th><th>' + value.km +
+                                                '</th><th>' + value.price +
+                                                '</th><th>' + value.year +
+                                                '</th><th>' + value.horsepower +
+                                                '</th></tr>';     
+                                          });
+
+                                            $('#t02').html(trHTML2);
+                                    
+                                    $('p').click(function(){
+                                         $('p').hide(); 
+                                         $('#t03').show(); 
+                                        
+                                    var trHTML3 = '';
+                                         trHTML3 += 
+                                                 '<tr><th>' + "SELLER NAME" + 
+                                                '</th><th>' + "SELLER PHONE" +
+                                                '</th><th>' + "SELLER MAIL" +
+                                                '</th><th>' + "SELLER LOCALIZATION" +
+                                                '</th></tr>';  
+                                        
+                                    $.each(data, function (key,value) {
+                                       
+                                             trHTML3 += 
+                                                
+                                                '<tr><th id="sellerName">' + value.name + 
+                                                '</th><th>' + value.phone + 
+                                                '</th><th id="mail">' + value.mail + 
+                                                '</th><th>' + value.localization + 
+                                                '</th></tr>';     
+                                          });
+
+                                            $('#t03').html(trHTML3);
+                                        
+                                    
+                                    }); 
+                                
+                                    $('#buy').click(function(){
+                                        var brand = $("#carBrand").text(); 
+                                        var model = $("#carModel").text(); 
+                                        alert("Thanks for buying the " +brand+" "+model+" car.");
+                                        var matricula = $("#Plate").text(); 
+                                        
+                                         $.ajax({
+                                            url: "/postToDelete",
+                                            type: "POST",
+                                            dataType: "json",
+                                            data: { matricula: matricula },
+                                            //contentType: "application/json",
+                                            complete: function() {
+                                              //called when complete
+                                                console.log('process complete');
+                                            },
+                                             success: function(data) {
+                                                 console.log(data);
+                                                 console.log('process sucess');
+                                             },
+                                            error: function() {
+                                                console.log('process error');
+                                            }
+                                         });
+                                    }); 
+                                    
+                                    
+                                    $('#like').click(function(){
+                                        var mail = $("#mail").text();
+                                        var sellerName = $("#sellerName").text(); 
+                                        var brand = $("#carBrand").text(); 
+                                        var model = $("#carModel").text();
+                                        
+                                         $.ajax({
+                                            url: "/postMail",
+                                            type: "POST",
+                                            dataType: "json",
+                                            data: { mail: mail, sellerName: sellerName, brand: brand, model: model },
+                                            //contentType: "application/json",
+                                            complete: function() {
+                                              //called when complete
+                                                console.log('process complete');
+                                            },
+                                             success: function(data) {
+                                                 console.log(data);
+                                                 console.log('process sucess');
+                                             },
+                                            error: function() {
+                                                console.log('process error');
+                                            }
+                                         });
+                                    });
+                                    
+                                },
+                                               
+                                error: function() {
+                                  console.log('process error');
+                                },
+                              });
+                        });
+                    })
+                    .fail(function(data){
+                        console.log("error"); 
+                    })
+            });
+         
+    </script>
+	<title>AVAILABLE VEHICLES</title>
+    <link rel="icon" href="images/logo.jpg"/>
+</head>
+<body>    
+    <h2>These are our available vehicles</h2>
+    <div id="carInfo">
+        <table id="t01" border="1">
+              <tr>
+                
+              </tr>
+        </table>
+    </div><br>
+    
+    <div id="carInfoComplete">
+        <table id="t02" border="1">
+              <tr>
+                
+              </tr>
+        </table>
+    </div><br>
+    
+    <p style="display: none;">Show seller info</p>
+    
+    <div id="sellerInfo">
+        <table id="t03" border="1">
+              <tr>
+                
+              </tr>
+        </table>
+    </div><br>
+    
+    <div id="bottomDiv"  class="bottomDi" style="display: none;">
+    <form method="post" action="/postToDelete" class="form-resgister">
+        <div id="bottom">
+        <input  class="btn btn-primary" type="submit" name="submit" id="buy" value="Buy" onclick="location='indexCar.html'"/>
+            <img id="like" src="images/like.png">
+            </div>
+    </form>
+        
+    </div>
+    
+<!--
+   $.ajax({
+                                     type: "GET",
+                                     url: 'http://localhost:2000/postPlate',
+                                     data: 'data',
+                                     dataType: 'json',
+                                     contentType: "application/json; charset=UTF-8"
+                                    })
+
+                                    .done(function(data){ 
+                                    //var json = JSON.stringify(data); 
+                                         var trHTML = '';
+                                      $.each(data, function (key,value) {
+                                         trHTML += 
+                                            '<tr><td>' + value.plate + 
+                                            '</td><td>' + value.brand + 
+                                            '</td><td>' + value.model + 
+                                            '</td><td>' + value.colour + 
+                                            '</td><td>' + value.km +
+                                            '</td><td>' + value.price +
+                                            '</td><td>' + value.year +
+                                            '</td><td>' + value.horsepower +
+                                            '</td></tr>';     
+                                      });
+                                    $('#t02').append(trHTML);
+                                })
+
+
+    -->
+</body>
+
+</html>

@@ -15,7 +15,9 @@ var smtpTransport = nodemailer.createTransport({
     }
 });
 
+
 function saveUser2DB(req, res) {
+    
 	 var user = {
         realname: req.body.realname,
         nick: req.body.nick,

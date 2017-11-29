@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/bootstrap-responsive.css">
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {                
+                //$('#text').hide(); 
+                //$('#model').hide(); 
+                $('#cboxYes').click(function(){
+                     $("div#a").show();
+                    //$('#text').show(); 
+                    //$('#model').show(); 
+                }); 
+            }); 
+            function popUp() {
+                alert("Thank you, your opinion has been correctly processed!"); 
+                $('#text').hide(); 
+                $('#model').hide();
+            }
+        </script>
+	<title>Rate us</title>
+    <link rel="icon" href="images/logo.jpg"/>
+</head>
+<body>
+	<center><div class="tit"><h2>PLEASE, RATE US</h2>
+        <h5>Your opinion is essential in order to improve this app. </h5><br>
+		<center><div class="Ingreso">
+            
+<!-- formulario registro -->
+<form>
+  <fieldset>
+    <div id="radioGroup">
+      <label id="name"><b>How much did you like the app?</b></label>
+
+          <div class="wrap">
+            <label for="markStudent">1</label>
+            <input type="radio" name="value" id="markStudent" value="1" />
+          </div>
+
+          <div class="wrap">
+            <label for="markAdmin">2</label>
+            <input type="radio" name="value" id="markAdmin" value="2" />
+          </div>
+          <div class="wrap">
+            <label for="markService">3</label>
+            <input type="radio" name="value" id="markService" value="3" />
+          </div>
+          <div class="wrap">
+            <label for="markNull">4</label>
+            <input type="radio" name="value" id="markNull" value="4" />
+          </div>
+          <div class="wrap">
+            <label for="markNull">5</label>
+            <input type="radio" name="value" id="markNull" value="5" />
+          </div>
+        
+        
+        <div id="radioGroup">
+            <br><label id="name"><b>Would you improve something?</b></label>
+
+          <div class="wrap">
+            <label for="markStudent">Yes</label>
+            <input type="radio" name="value2" id="cboxYes" value="Y" />
+          </div>
+
+          <div class="wrap">
+            <label for="markAdmin">No</label>
+            <input type="radio" name="value2" id="cboxNo" value="N" />
+          </div>
+            
+        </div>    
+    <div id="a" class="improvemets" style="display: none;">
+      <br><label id="model"><b>What would you improve?</b></label><br>
+      <textarea id="text" name="text"></textarea>
+    </div>
+      <br>
+    </div>
+    
+      <input  class="btn btn-primary" type="reset" name="send" value="Send" onclick="popUp();"/>
+  </fieldset>
+    </form>
+</div>
+</body>
+</html>
