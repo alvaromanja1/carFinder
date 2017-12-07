@@ -1,8 +1,6 @@
-var url = require("url");
 var MongoClient = require('mongodb').MongoClient;
 var conversionsXML = "";
 var assert = require('assert');
-var callback = require('callback'); 
 var nodemailer = require('nodemailer');
 var express = require("express");
 var app = express();
@@ -16,7 +14,7 @@ var smtpTransport = nodemailer.createTransport({
     }
 });
 
-
+//insert a user to the database
 function saveUser2DB(req, res) {
     
 	 var user = {
@@ -60,6 +58,7 @@ function saveUser2DB(req, res) {
 });
 }
 
+//insert a car to the database
 function saveCar2DB(req, res) {
 	  var car = {
         plate: req.body.plate,
@@ -94,6 +93,7 @@ function saveCar2DB(req, res) {
 	});
 }
 
+//login method
 function logIn(req, res) {
     
     var mail = req.body.email; 
@@ -123,6 +123,7 @@ function logIn(req, res) {
     });
 }
 
+//delete user from the database
 function deleteUser(req, res) {
    var id = req.body.id;
    var pass = req.body.password;
@@ -155,7 +156,7 @@ function deleteUser(req, res) {
 });
 }
 
-
+//update a user from the database
 function updateUser(req, res) {
  var item = {
     pass: req.body.pass
@@ -193,6 +194,7 @@ function updateUser(req, res) {
 });
 }
 
+//send email when contact to the admin
 function sendEmail(req, res){
       var inputName = req.body.inputName; 
       var email = req.body.email;
@@ -235,8 +237,8 @@ function sendEmail(req, res){
     
 }
 
+//retrieve cars from the database
 function retrieveCars(req, res){
-
     MongoClient.connect('mongodb://127.0.0.1:27017/carFinder2', function(err, db) {
 		if(err) throw err;
     assert.equal(null, err);      
@@ -257,6 +259,7 @@ function retrieveCars(req, res){
 }); 
 }
 
+//send email with the forgotten pass
 function forgetPass(req, res){
     var nick = req.body.nick; 
     
@@ -299,6 +302,7 @@ function forgetPass(req, res){
     });
 }
 
+//car info to json 
 function carInfo(req, res){
     console.log(req.body.numberPlate); 
     var plate = req.body.numberPlate; 
@@ -313,10 +317,6 @@ function carInfo(req, res){
         res.json(err);
     }
     else{
-        //var json = JSON.stringify(results)
-        //var json = res.json(results); 
-        //console.log(json); 
-        //res.send(JSON.stringify(results));
         console.log(results); 
         res.json(results); 
     }      
@@ -338,10 +338,6 @@ function carInfoC(req, res){
         res.json(err);
     }
     else{
-        //var json = JSON.stringify(results)
-        //var json = res.json(results); 
-        //console.log(json); 
-        //res.send(JSON.stringify(results));
         console.log(results); 
         res.json(results); 
     }      
@@ -349,6 +345,7 @@ function carInfoC(req, res){
 }); 
 }
 
+//delete a car of the database
 function deleteCar(req, res){
      console.log(req.body.matricula); 
      var plate = req.body.matricula; 
@@ -366,6 +363,7 @@ function deleteCar(req, res){
     
 }
 
+//send email to the seller
 function sellerSendMail(req, res){
     var mail = req.body.mail; 
     var sellerName = req.body.sellerName; 
@@ -389,6 +387,7 @@ function sellerSendMail(req, res){
     
 }
 
+//exports
 exports.saveUser2DB = saveUser2DB;
 exports.saveCar2DB = saveCar2DB;
 exports.logIn = logIn;

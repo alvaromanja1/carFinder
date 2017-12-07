@@ -15,6 +15,7 @@ app.get('/', function(req, res) {
 	res.redirect("index.html");
 });
 
+//insert the user to the database
 app.post('/insertUser', function(req, res) {
   console.log("Inserting user");
   controller.dispatch(urlResponseHandlers.saveUser2DB, req, res);
@@ -27,6 +28,7 @@ app.post('/insertCar', function(req, res) {
   //res.redirect('/');
 });
 
+//login method
 app.post('/login', (req, res) => {
   controller.dispatch(urlResponseHandlers.logIn, req, res);
 }); 
@@ -61,11 +63,13 @@ app.post('/forget', function(req, res) {
     controller.dispatch(urlResponseHandlers.forgetPass, req, res); 
 }); 
 
+//post car's plate to the server
 app.post('/postPlate', function(req, res) {
     //console.log(req.body.numberPlate);
     controller.dispatch(urlResponseHandlers.carInfo, req, res); 
 }); 
 
+//retrieve car's plate
 app.get('/getPlate', function(req, res) {
     //console.log(req.body.numberPlate);
     controller.dispatch(urlResponseHandlers.carInfoC, req, res); 
@@ -76,6 +80,7 @@ app.post('/postToDelete', function(req, res) {
     controller.dispatch(urlResponseHandlers.deleteCar, req, res); 
 }); 
 
+//send mail to the seller
 app.post('/postMail', function(req, res) {
     //console.log(req.body.numberPlate);
     controller.dispatch(urlResponseHandlers.sellerSendMail, req, res); 

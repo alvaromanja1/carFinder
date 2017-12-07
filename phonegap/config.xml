@@ -4,17 +4,19 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.phonegap.carFinder"
+		versionCode = "10"
         version   = "1.0.0">
 
-    <name>Walla Car</name>
+  <name>Walla Car</name>
 
-    <description>
+  <description>
         My Walla Car app.
-    </description>
+  </description>
 
-    <author href="http://phonegap.com" email="alvaromanja1@opendeusto.es">
+  <author href="http://phonegap.com" email="alvaromanja1@opendeusto.es">
 		Alvaro Manjarrés
-    </author>
+  </author>
+	
 	
 	<content src="index.html" />
 	<access origin="*" />
