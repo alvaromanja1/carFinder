@@ -4,7 +4,6 @@ var assert = require('assert');
 var nodemailer = require('nodemailer');
 var express = require("express");
 var app = express();
-var alert = require ("alert-node");
 var smtpTransport = nodemailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
@@ -21,10 +20,11 @@ function saveUser2DB(req, res) {
         realname: req.body.realname,
         nick: req.body.nick,
         telephone: req.body.telephone, 
-        pass: req.body.passwo
+        pass: req.body.pass
   };
     
     var nickn = req.body.nick;
+    console.log(user);
 	
     MongoClient.connect('mongodb://127.0.0.1:27017/carFinder2', function(err, db) {
 		if(err) throw err;
@@ -32,7 +32,9 @@ function saveUser2DB(req, res) {
         db.collection('users').findOne({"nick": nickn}, function(err, result) {
         if(err) {
             console.log(err); 
-            return res.status(500).send();   
+            res.statusCode = 404;
+            res.send(res.statusCode);
+            
         }
         
         if(!result) { 
@@ -44,15 +46,16 @@ function saveUser2DB(req, res) {
 				console.log("Error produced: " + err);
 			} else {
 				console.log("Información guardada: " + err);
-                res.redirect('/');
+                res.statusCode = 201;
+                res.send(res.statusCode);
 			}
 		});
         }
         else{
             console.log('Error, user already exists');
-            alert('Error, the user already exists, create a new one.');
-            return res.redirect("/index.html");
-            return res.status(404).send();
+            res.statusCode = 404;
+            res.send(res.statusCode);
+            
         }
 	});
 });
@@ -96,27 +99,29 @@ function saveCar2DB(req, res) {
 //login method
 function logIn(req, res) {
     
-    var mail = req.body.email; 
-    var pass = req.body.passw; 
+    var nick = req.body.nick; 
+    var pass = req.body.pass; 
+    console.log(nick);
+    console.log(pass);
     
     MongoClient.connect('mongodb://127.0.0.1:27017/carFinder2', function(err, db) {
 		if(err) throw err;
     
-    db.collection('users').findOne({"nick": mail, "pass": pass}, function(err, result) {
+    db.collection('users').findOne({"nick": nick, "pass": pass}, function(err, result) {
         if(err) {
             console.log(err); 
             return res.status(500).send();   
         }
         if(!result) { 
-            alert('Incorrect user info, please try again');
             console.log('Error, incorrect user info');
-            return res.redirect("/index.html");
+            res.statusCode = 404;
+            res.send(res.statusCode);
             //return res.status(404).send();   
         }
         else{
             console.log('Logged In correctly');
-            res.redirect('/indexCar.html');
-            return res.status(200).send(); 
+            res.statusCode = 201;
+            res.send(res.statusCode);
             }
            
         })
@@ -139,7 +144,6 @@ function deleteUser(req, res) {
         
         if(!result) { 
             console.log('Error, incorrect info');
-            alert('Incorrect information, please try again');
             return res.redirect("/indexUserDelete.html");
             return res.status(404).send();
         }
@@ -176,7 +180,6 @@ function updateUser(req, res) {
         
         if(!result) { 
             console.log('Error, incorrect info');
-            alert('Incorrect information, please try again');
             return res.redirect("/indexUserUpdate.html");
             return res.status(404).send();
         }
@@ -274,7 +277,6 @@ function forgetPass(req, res){
         
         if(!result) { 
             console.log('Error, incorrect email');
-            alert('Incorrect email, please try again');
             return res.redirect("/indexForget.html");
             return res.status(404).send();
         }
